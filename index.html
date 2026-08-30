@@ -27,12 +27,12 @@
 
     <meta
         name="robots"
-        content="index, follow, max-image-preview:large"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     >
 
     <meta
         name="googlebot"
-        content="index, follow"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     >
 
 
@@ -51,7 +51,7 @@
     ====================================================== -->
 
     <title>
-        RH sem Complicação | Direitos Trabalhistas, Rescisão e Calculadoras
+        RH sem Complicação | Direitos Trabalhistas e Calculadoras
     </title>
 
     <meta
@@ -59,8 +59,19 @@
         content="RH sem Complicação: entenda seus direitos trabalhistas de forma simples e objetiva. Consulte informações sobre rescisão, férias, 13º salário, FGTS, horas extras, aviso-prévio e use calculadoras trabalhistas gratuitas."
     >
 
+    <meta
+        name="keywords"
+        content="direitos trabalhistas, RH, recursos humanos, rescisão, cálculo de rescisão, férias, 13º salário, FGTS, horas extras, aviso-prévio, seguro-desemprego, salário, trabalhador"
+    >
+
     <link
         rel="canonical"
+        href="https://rhsemcomplicacao.netlify.app/"
+    >
+
+    <link
+        rel="alternate"
+        hreflang="pt-br"
         href="https://rhsemcomplicacao.netlify.app/"
     >
 
@@ -76,12 +87,12 @@
 
     <meta
         property="og:title"
-        content="RH sem Complicação | Direitos Trabalhistas"
+        content="RH sem Complicação | Direitos Trabalhistas e Calculadoras"
     >
 
     <meta
         property="og:description"
-        content="Direitos trabalhistas explicados de forma simples e objetiva. Consulte artigos, calculadoras e fontes oficiais."
+        content="Entenda seus direitos trabalhistas de forma simples e objetiva. Consulte artigos, calculadoras trabalhistas gratuitas e fontes oficiais."
     >
 
     <meta
@@ -104,6 +115,16 @@
         content="https://rhsemcomplicacao.netlify.app/imagen/perfil%20sit.jpeg"
     >
 
+    <meta
+        property="og:image:alt"
+        content="Edson Emanuel Previatti - profissional de RH e criador do RH sem Complicação"
+    >
+
+    <meta
+        property="og:image:type"
+        content="image/jpeg"
+    >
+
 
     <!-- =====================================================
          TWITTER / X
@@ -121,7 +142,7 @@
 
     <meta
         name="twitter:description"
-        content="Informações trabalhistas explicadas de forma simples, clara e objetiva."
+        content="Informações trabalhistas explicadas de forma simples, clara e objetiva, com artigos e calculadoras gratuitas."
     >
 
     <meta
@@ -129,26 +150,98 @@
         content="https://rhsemcomplicacao.netlify.app/imagen/perfil%20sit.jpeg"
     >
 
+    <meta
+        name="twitter:image:alt"
+        content="Edson Emanuel Previatti - RH sem Complicação"
+    >
+
 
     <!-- =====================================================
-         DADOS ESTRUTURADOS
+         DADOS ESTRUTURADOS - WEBSITE
     ====================================================== -->
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
+        "@id": "https://rhsemcomplicacao.netlify.app/#website",
         "name": "RH sem Complicação",
+        "alternateName": "RH sem Complicação - Direitos Trabalhistas",
         "url": "https://rhsemcomplicacao.netlify.app/",
         "description": "Site com informações sobre direitos trabalhistas, rescisão, férias, 13º salário, FGTS, horas extras e calculadoras trabalhistas.",
         "inLanguage": "pt-BR",
-        "author": {
-            "@type": "Person",
-            "name": "Edson Emanuel Pereviatti"
-        },
         "publisher": {
-            "@type": "Person",
-            "name": "Edson Emanuel Pereviatti"
+            "@id": "https://rhsemcomplicacao.netlify.app/#person"
+        }
+    }
+    </script>
+
+
+    <!-- =====================================================
+         DADOS ESTRUTURADOS - AUTOR
+    ====================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://rhsemcomplicacao.netlify.app/#person",
+        "name": "Edson Emanuel Previatti",
+        "url": "https://rhsemcomplicacao.netlify.app/",
+        "jobTitle": "Profissional de Recursos Humanos",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "RH sem Complicação",
+            "url": "https://rhsemcomplicacao.netlify.app/"
+        }
+    }
+    </script>
+
+
+    <!-- =====================================================
+         DADOS ESTRUTURADOS - PÁGINA
+    ====================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://rhsemcomplicacao.netlify.app/#webpage",
+        "url": "https://rhsemcomplicacao.netlify.app/",
+        "name": "RH sem Complicação | Direitos Trabalhistas e Calculadoras",
+        "description": "Informações sobre direitos trabalhistas, rescisão, férias, 13º salário, FGTS, horas extras e calculadoras trabalhistas.",
+        "isPartOf": {
+            "@id": "https://rhsemcomplicacao.netlify.app/#website"
+        },
+        "about": {
+            "@type": "Thing",
+            "name": "Direitos trabalhistas"
+        },
+        "author": {
+            "@id": "https://rhsemcomplicacao.netlify.app/#person"
+        },
+        "inLanguage": "pt-BR"
+    }
+    </script>
+
+
+    <!-- =====================================================
+         DADOS ESTRUTURADOS - ORGANIZAÇÃO
+    ====================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://rhsemcomplicacao.netlify.app/#organization",
+        "name": "RH sem Complicação",
+        "url": "https://rhsemcomplicacao.netlify.app/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://rhsemcomplicacao.netlify.app/imagen/perfil%20sit.jpeg"
+        },
+        "founder": {
+            "@id": "https://rhsemcomplicacao.netlify.app/#person"
         }
     }
     </script>
@@ -191,10 +284,13 @@
         <a
             href="#inicio"
             class="logo"
-            aria-label="RH sem Complicação - Início"
+            aria-label="RH sem Complicação - Página inicial"
         >
 
-            <div class="logo-icon">
+            <div
+                class="logo-icon"
+                aria-hidden="true"
+            >
                 RH
             </div>
 
@@ -208,8 +304,9 @@
         <button
             class="menu-button"
             id="menuButton"
-            aria-label="Abrir menu"
+            aria-label="Abrir menu principal"
             aria-expanded="false"
+            aria-controls="menu"
             type="button"
         >
 
@@ -229,7 +326,7 @@
             </a>
 
             <a href="#direitos">
-                Direitos
+                Direitos Trabalhistas
             </a>
 
             <a href="#rescisao">
@@ -241,7 +338,7 @@
             </a>
 
             <a href="#decimo">
-                13º
+                13º Salário
             </a>
 
             <a href="#fgts">
@@ -249,7 +346,7 @@
             </a>
 
             <a href="#calculadoras">
-                Calculadoras
+                Calculadoras Trabalhistas
             </a>
 
             <a href="#legislacao">
@@ -294,6 +391,7 @@
 <section
     class="hero"
     id="inicio"
+    aria-labelledby="titulo-principal"
 >
 
     <div class="container hero-grid">
@@ -306,7 +404,7 @@
             </span>
 
 
-            <h1>
+            <h1 id="titulo-principal">
 
                 Seus direitos trabalhistas,
 
@@ -334,7 +432,7 @@
                     class="button button-primary"
                 >
 
-                    🧮 Ver calculadoras
+                    🧮 Ver calculadoras trabalhistas
 
                 </a>
 
@@ -344,7 +442,7 @@
                     class="button button-secondary"
                 >
 
-                    📚 Ler artigos
+                    📚 Ler artigos trabalhistas
 
                 </a>
 
@@ -373,7 +471,10 @@
 
         <div class="hero-card">
 
-            <div class="hero-card-icon">
+            <div
+                class="hero-card-icon"
+                aria-hidden="true"
+            >
                 ⚖️
             </div>
 
@@ -385,8 +486,9 @@
 
             <p>
 
-                Consulte seus direitos, leia nossos artigos,
-                utilize as calculadoras e acesse diretamente
+                Consulte seus direitos trabalhistas,
+                leia nossos artigos, utilize as
+                calculadoras e acesse diretamente
                 as fontes oficiais.
 
             </p>
@@ -416,6 +518,7 @@
 <section
     class="section"
     id="direitos"
+    aria-labelledby="titulo-direitos"
 >
 
     <div class="container">
@@ -426,12 +529,12 @@
             <div>
 
                 <span class="tag">
-                    NAVEGUE POR ASSUNTO
+                    DIREITOS TRABALHISTAS
                 </span>
 
 
-                <h2>
-                    Encontre o que você procura
+                <h2 id="titulo-direitos">
+                    Encontre informações sobre seus direitos
                 </h2>
 
             </div>
@@ -456,7 +559,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     📄
                 </div>
 
@@ -480,7 +586,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     🌴
                 </div>
 
@@ -504,7 +613,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     🎄
                 </div>
 
@@ -528,7 +640,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     💰
                 </div>
 
@@ -552,7 +667,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     ⏱️
                 </div>
 
@@ -576,7 +694,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     ⚖️
                 </div>
 
@@ -609,6 +730,7 @@
 <section
     class="section calculators-section"
     id="calculadoras"
+    aria-labelledby="titulo-calculadoras"
 >
 
     <div class="container">
@@ -623,8 +745,8 @@
                 </span>
 
 
-                <h2>
-                    Calculadoras trabalhistas
+                <h2 id="titulo-calculadoras">
+                    Calculadoras trabalhistas gratuitas
                 </h2>
 
             </div>
@@ -632,8 +754,8 @@
 
             <p>
 
-                Faça estimativas rápidas dos seus
-                direitos trabalhistas.
+                Faça estimativas rápidas de valores
+                relacionados aos seus direitos trabalhistas.
 
             </p>
 
@@ -668,7 +790,7 @@
 
                 <div class="money-input">
 
-                    <span>
+                    <span aria-hidden="true">
                         R$
                     </span>
 
@@ -679,6 +801,7 @@
                         placeholder="2195.00"
                         min="0"
                         step="0.01"
+                        inputmode="decimal"
                     >
 
                 </div>
@@ -695,6 +818,7 @@
                     placeholder="12"
                     min="1"
                     max="12"
+                    inputmode="numeric"
                 >
 
 
@@ -704,7 +828,7 @@
                     type="button"
                 >
 
-                    Calcular 13º
+                    Calcular 13º salário
 
                 </button>
 
@@ -712,6 +836,7 @@
                 <div
                     class="result"
                     id="result13"
+                    aria-live="polite"
                 >
 
                     <span>
@@ -758,7 +883,7 @@
 
                 <div class="money-input">
 
-                    <span>
+                    <span aria-hidden="true">
                         R$
                     </span>
 
@@ -769,6 +894,7 @@
                         placeholder="2195.00"
                         min="0"
                         step="0.01"
+                        inputmode="decimal"
                     >
 
                 </div>
@@ -785,6 +911,7 @@
                     value="30"
                     min="1"
                     max="30"
+                    inputmode="numeric"
                 >
 
 
@@ -802,6 +929,7 @@
                 <div
                     class="result"
                     id="resultFerias"
+                    aria-live="polite"
                 >
 
                     <span>
@@ -848,7 +976,7 @@
 
                 <div class="money-input">
 
-                    <span>
+                    <span aria-hidden="true">
                         R$
                     </span>
 
@@ -859,6 +987,7 @@
                         placeholder="2195.00"
                         min="0"
                         step="0.01"
+                        inputmode="decimal"
                     >
 
                 </div>
@@ -874,6 +1003,7 @@
                     id="fgtsMonths"
                     placeholder="12"
                     min="1"
+                    inputmode="numeric"
                 >
 
 
@@ -891,6 +1021,7 @@
                 <div
                     class="result"
                     id="resultFgts"
+                    aria-live="polite"
                 >
 
                     <span>
@@ -940,7 +1071,7 @@
 
                 <div class="money-input">
 
-                    <span>
+                    <span aria-hidden="true">
                         R$
                     </span>
 
@@ -951,6 +1082,7 @@
                         placeholder="2195.00"
                         min="0"
                         step="0.01"
+                        inputmode="decimal"
                     >
 
                 </div>
@@ -967,6 +1099,7 @@
                     placeholder="10"
                     min="0"
                     step="0.5"
+                    inputmode="decimal"
                 >
 
 
@@ -1002,6 +1135,7 @@
                 <div
                     class="result"
                     id="resultExtra"
+                    aria-live="polite"
                 >
 
                     <span>
@@ -1036,7 +1170,7 @@
                 <p class="small-text">
 
                     Estime algumas das principais
-                    verbas de uma rescisão.
+                    verbas de uma rescisão trabalhista.
 
                 </p>
 
@@ -1048,7 +1182,7 @@
 
                 <div class="money-input">
 
-                    <span>
+                    <span aria-hidden="true">
                         R$
                     </span>
 
@@ -1059,6 +1193,7 @@
                         placeholder="2195.00"
                         min="0"
                         step="0.01"
+                        inputmode="decimal"
                     >
 
                 </div>
@@ -1075,6 +1210,7 @@
                     placeholder="8"
                     min="1"
                     max="12"
+                    inputmode="numeric"
                 >
 
 
@@ -1089,6 +1225,7 @@
                     placeholder="15"
                     min="0"
                     max="31"
+                    inputmode="numeric"
                 >
 
 
@@ -1106,6 +1243,7 @@
                 <div
                     class="result"
                     id="resultRescisao"
+                    aria-live="polite"
                 >
 
                     <span>
@@ -1133,7 +1271,7 @@
                     class="text-link"
                 >
 
-                    Entenda a rescisão →
+                    Entenda a rescisão trabalhista →
 
                 </a>
 
@@ -1170,11 +1308,15 @@
 <section
     class="section"
     id="rescisao"
+    aria-labelledby="titulo-rescisao"
 >
 
     <div class="container feature">
 
-        <div class="feature-number">
+        <div
+            class="feature-number"
+            aria-hidden="true"
+        >
             01
         </div>
 
@@ -1182,11 +1324,11 @@
         <div>
 
             <span class="tag">
-                RESCISÃO
+                RESCISÃO TRABALHISTA
             </span>
 
 
-            <h2>
+            <h2 id="titulo-rescisao">
                 Fui demitido. O que eu recebo?
             </h2>
 
@@ -1230,7 +1372,7 @@
                 class="text-link"
             >
 
-                Ler artigo completo →
+                Ler artigo completo sobre rescisão →
 
             </a>
 
@@ -1249,6 +1391,7 @@
 <section
     class="section gray"
     id="ferias"
+    aria-labelledby="titulo-ferias"
 >
 
     <div class="container two-columns">
@@ -1256,11 +1399,11 @@
         <div>
 
             <span class="tag">
-                FÉRIAS
+                FÉRIAS TRABALHISTAS
             </span>
 
 
-            <h2>
+            <h2 id="titulo-ferias">
                 Férias não precisam ser complicadas.
             </h2>
 
@@ -1279,7 +1422,7 @@
                 class="text-link"
             >
 
-                Ler artigo completo →
+                Ler artigo completo sobre férias →
 
             </a>
 
@@ -1292,7 +1435,7 @@
 
             <a href="artigos/ferias-proporcionais.html">
 
-                <span>
+                <span aria-hidden="true">
                     ✓
                 </span>
 
@@ -1305,7 +1448,7 @@
 
             <a href="artigos/ferias-vencidas.html">
 
-                <span>
+                <span aria-hidden="true">
                     ✓
                 </span>
 
@@ -1318,7 +1461,7 @@
 
             <a href="artigos/adicional-de-um-terco.html">
 
-                <span>
+                <span aria-hidden="true">
                     ✓
                 </span>
 
@@ -1331,7 +1474,7 @@
 
             <a href="artigos/abono-pecuniario.html">
 
-                <span>
+                <span aria-hidden="true">
                     ✓
                 </span>
 
@@ -1357,6 +1500,7 @@
 <section
     class="section"
     id="decimo"
+    aria-labelledby="titulo-decimo"
 >
 
     <div class="container two-columns">
@@ -1364,12 +1508,15 @@
 
         <div class="highlight">
 
-            <div class="big-icon">
+            <div
+                class="big-icon"
+                aria-hidden="true"
+            >
                 🎄
             </div>
 
 
-            <h2>
+            <h2 id="titulo-decimo">
                 13º salário
             </h2>
 
@@ -1377,7 +1524,7 @@
             <p>
 
                 Entenda as parcelas e o cálculo
-                proporcional.
+                proporcional do décimo terceiro.
 
             </p>
 
@@ -1387,7 +1534,7 @@
                 class="button button-secondary"
             >
 
-                Calcular agora
+                Calcular 13º salário
 
             </a>
 
@@ -1398,7 +1545,7 @@
         <div>
 
             <span class="tag">
-                ENTENDA
+                DÉCIMO TERCEIRO
             </span>
 
 
@@ -1421,7 +1568,7 @@
                 class="text-link"
             >
 
-                Ler artigo completo →
+                Ler artigo completo sobre 13º salário →
 
             </a>
 
@@ -1454,11 +1601,15 @@
 <section
     class="section gray"
     id="fgts"
+    aria-labelledby="titulo-fgts"
 >
 
     <div class="container feature">
 
-        <div class="feature-number">
+        <div
+            class="feature-number"
+            aria-hidden="true"
+        >
             03
         </div>
 
@@ -1470,7 +1621,7 @@
             </span>
 
 
-            <h2>
+            <h2 id="titulo-fgts">
                 Entenda o seu FGTS
             </h2>
 
@@ -1479,7 +1630,7 @@
 
                 Saiba como funcionam depósitos,
                 saques, multa rescisória e FGTS
-                durante e após o contrato.
+                durante e após o contrato de trabalho.
 
             </p>
 
@@ -1510,7 +1661,7 @@
                 class="text-link"
             >
 
-                Ler artigo completo →
+                Ler artigo completo sobre FGTS →
 
             </a>
 
@@ -1529,6 +1680,7 @@
 <section
     class="section"
     id="legislacao"
+    aria-labelledby="titulo-legislacao"
 >
 
     <div class="container">
@@ -1543,7 +1695,7 @@
                 </span>
 
 
-                <h2>
+                <h2 id="titulo-legislacao">
                     Consulte a legislação trabalhista
                 </h2>
 
@@ -1553,7 +1705,8 @@
             <p>
 
                 Acesse diretamente fontes oficiais
-                para conferir leis e informações.
+                para conferir leis, normas e informações
+                relacionadas ao trabalho.
 
             </p>
 
@@ -1571,7 +1724,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     📕
                 </div>
 
@@ -1604,7 +1760,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     🏛️
                 </div>
 
@@ -1637,7 +1796,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     ⚖️
                 </div>
 
@@ -1670,7 +1832,10 @@
                 class="topic-card"
             >
 
-                <div class="topic-icon">
+                <div
+                    class="topic-icon"
+                    aria-hidden="true"
+                >
                     💰
                 </div>
 
@@ -1710,6 +1875,7 @@
 <section
     class="section gray"
     id="artigos"
+    aria-labelledby="titulo-artigos"
 >
 
     <div class="container">
@@ -1720,12 +1886,12 @@
             <div>
 
                 <span class="tag">
-                    BLOG
+                    CONTEÚDO TRABALHISTA
                 </span>
 
 
-                <h2>
-                    Artigos trabalhistas
+                <h2 id="titulo-artigos">
+                    Artigos sobre direitos trabalhistas
                 </h2>
 
             </div>
@@ -1760,7 +1926,7 @@
                 <p>
 
                     Conheça as principais verbas que podem
-                    aparecer em uma rescisão.
+                    aparecer em uma rescisão trabalhista.
 
                 </p>
 
@@ -2000,6 +2166,7 @@
 <section
     class="section"
     id="planilhas"
+    aria-labelledby="titulo-planilhas"
 >
 
     <div class="container">
@@ -2014,8 +2181,8 @@
                 </span>
 
 
-                <h2>
-                    Planilhas e materiais
+                <h2 id="titulo-planilhas">
+                    Planilhas e materiais para RH
                 </h2>
 
             </div>
@@ -2024,7 +2191,7 @@
             <p>
 
                 Materiais para organização pessoal
-                e rotinas de RH.
+                e rotinas de Recursos Humanos.
 
             </p>
 
@@ -2037,7 +2204,10 @@
 
             <div class="product-card">
 
-                <div class="product-icon">
+                <div
+                    class="product-icon"
+                    aria-hidden="true"
+                >
                     📊
                 </div>
 
@@ -2070,7 +2240,10 @@
 
             <div class="product-card">
 
-                <div class="product-icon">
+                <div
+                    class="product-icon"
+                    aria-hidden="true"
+                >
                     📅
                 </div>
 
@@ -2103,7 +2276,10 @@
 
             <div class="product-card">
 
-                <div class="product-icon">
+                <div
+                    class="product-icon"
+                    aria-hidden="true"
+                >
                     👥
                 </div>
 
@@ -2148,6 +2324,7 @@
 <section
     class="about"
     id="sobre"
+    aria-labelledby="titulo-sobre"
 >
 
     <div class="container about-grid">
@@ -2157,8 +2334,11 @@
 
             <img
                 src="imagen/perfil%20sit.jpeg"
-                alt="Edson Emanuel Pereviatti - profissional de RH"
+                alt="Edson Emanuel Previatti, profissional de Recursos Humanos e criador do RH sem Complicação"
+                width="400"
+                height="400"
                 loading="lazy"
+                decoding="async"
             >
 
         </div>
@@ -2172,7 +2352,7 @@
             </span>
 
 
-            <h2>
+            <h2 id="titulo-sobre">
                 Olá, eu sou o Edson Emanuel Previatti.
             </h2>
 
@@ -2211,6 +2391,7 @@
 <section
     class="section"
     id="contato"
+    aria-labelledby="titulo-contato"
 >
 
     <div class="container">
@@ -2225,7 +2406,7 @@
                 </span>
 
 
-                <h2>
+                <h2 id="titulo-contato">
                     Entre em contato
                 </h2>
 
@@ -2246,7 +2427,10 @@
         <div class="contact-card">
 
 
-            <div class="contact-icon">
+            <div
+                class="contact-icon"
+                aria-hidden="true"
+            >
                 ✉️
             </div>
 
@@ -2323,9 +2507,13 @@
             <a
                 href="#inicio"
                 class="logo footer-logo"
+                aria-label="RH sem Complicação - Página inicial"
             >
 
-                <div class="logo-icon">
+                <div
+                    class="logo-icon"
+                    aria-hidden="true"
+                >
                     RH
                 </div>
 
@@ -2356,7 +2544,7 @@
 
 
             <a href="#direitos">
-                Direitos
+                Direitos Trabalhistas
             </a>
 
 
@@ -2496,6 +2684,13 @@
 
         RH sem Complicação.
         Todos os direitos reservados.
+
+        <br>
+
+        Conteúdo produzido por
+        <strong>
+            Edson Emanuel Previatti
+        </strong>.
 
     </div>
 

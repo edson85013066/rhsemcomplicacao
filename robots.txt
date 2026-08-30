@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rhsemcomplicacao.netlify.app/sitemap.xml

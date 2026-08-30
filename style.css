@@ -1,4 +1,4 @@
-css
+
 /* =====================================================
    RH SEM COMPLICAÇÃO
    CSS PRINCIPAL
@@ -35,8 +35,25 @@ a {
 }
 
 button,
-input {
+input,
+select,
+textarea {
     font: inherit;
+}
+
+/* =====================================================
+   REMOVER MARCADORES DE LISTAS
+===================================================== */
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
 }
 
 .container {
@@ -522,7 +539,8 @@ input {
     font-weight: 800;
 }
 
-.calculator input {
+.calculator input,
+.calculator select {
     width: 100%;
 
     padding: 12px;
@@ -534,9 +552,12 @@ input {
     border-radius: 8px;
 
     outline: none;
+
+    background: white;
 }
 
-.calculator input:focus {
+.calculator input:focus,
+.calculator select:focus {
     border-color: #2874aa;
 
     box-shadow:
@@ -570,6 +591,10 @@ input {
     border: none;
 
     border-radius: 0;
+}
+
+.money-input input:focus {
+    box-shadow: none;
 }
 
 .full-button {
@@ -823,7 +848,7 @@ input {
 
 
 /* =====================================================
-   LISTA
+   LISTA DE FÉRIAS
 ===================================================== */
 
 .simple-list {
@@ -832,7 +857,7 @@ input {
     gap: 11px;
 }
 
-.simple-list div {
+.simple-list a {
     display: flex;
 
     align-items: center;
@@ -852,7 +877,7 @@ input {
     transition: 0.25s ease;
 }
 
-.simple-list div:hover {
+.simple-list a:hover {
     transform: translateX(4px);
 
     background: #f0f7ff;
@@ -864,13 +889,15 @@ input {
         rgba(40, 116, 170, 0.10);
 }
 
-.simple-list span {
+.simple-list a span {
     display: grid;
 
     place-items: center;
 
     width: 25px;
     height: 25px;
+
+    flex-shrink: 0;
 
     border-radius: 50%;
 

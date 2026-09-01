@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // =====================================================
 
     function pegarNumero(id) {
+
         const campo = document.getElementById(id);
 
         if (!campo) {
@@ -14,29 +15,76 @@ document.addEventListener("DOMContentLoaded", () => {
             return 0;
         }
 
-        let valor = campo.value;
+        let valor = String(campo.value || "").trim();
 
-        // Aceita também valores digitados com vírgula
-        valor = String(valor).replace(",", ".");
+        if (!valor) {
+            return 0;
+        }
 
-        return Number.parseFloat(valor) || 0;
+        /*
+         * Aceita formatos brasileiros:
+         *
+         * 1930
+         * 1930,50
+         * 1.930,50
+         * R$ 1.930,50
+         *
+         * Também aceita formato decimal com ponto:
+         *
+         * 1930.50
+         */
+
+        valor = valor
+            .replace(/R\$/gi, "")
+            .replace(/\s/g, "");
+
+        // Se tiver ponto e vírgula:
+        // 1.930,50 -> 1930.50
+        if (valor.includes(".") && valor.includes(",")) {
+
+            valor = valor
+                .replace(/\./g, "")
+                .replace(",", ".");
+
+        }
+        // Se tiver somente vírgula:
+        // 1930,50 -> 1930.50
+        else if (valor.includes(",")) {
+
+            valor = valor.replace(",", ".");
+
+        }
+
+        // Remove caracteres que não sejam números, ponto ou sinal
+        valor = valor.replace(/[^\d.-]/g, "");
+
+        const numero = Number.parseFloat(valor);
+
+        return Number.isFinite(numero) ? numero : 0;
     }
 
 
     function reais(valor) {
-        return Number(valor).toLocaleString("pt-BR", {
+
+        return Number(valor || 0).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL"
         });
+
     }
 
 
     function mostrarErro(idResultado, titulo, mensagem) {
 
-        const resultado = document.getElementById(idResultado);
+        const resultado =
+            document.getElementById(idResultado);
 
         if (!resultado) {
-            console.error(`Resultado não encontrado: ${idResultado}`);
+
+            console.error(
+                `Resultado não encontrado: ${idResultado}`
+            );
+
             return;
         }
 
@@ -45,15 +93,28 @@ document.addEventListener("DOMContentLoaded", () => {
             <strong>${titulo}</strong>
             <small>${mensagem}</small>
         `;
+
+        resultado.style.display = "";
+
     }
 
 
-    function mostrarResultado(idResultado, titulo, valor, detalhes = "") {
+    function mostrarResultado(
+        idResultado,
+        titulo,
+        valor,
+        detalhes = ""
+    ) {
 
-        const resultado = document.getElementById(idResultado);
+        const resultado =
+            document.getElementById(idResultado);
 
         if (!resultado) {
-            console.error(`Resultado não encontrado: ${idResultado}`);
+
+            console.error(
+                `Resultado não encontrado: ${idResultado}`
+            );
+
             return;
         }
 
@@ -62,40 +123,147 @@ document.addEventListener("DOMContentLoaded", () => {
             <strong>${reais(valor)}</strong>
             <small>${detalhes}</small>
         `;
+
+        // IMPORTANTE:
+        // O resultado permanece visível.
+        resultado.style.display = "";
+
     }
+
+
+    // =====================================================
+    // SISTEMA DE AVISO / CIÊNCIA
+    // =====================================================
+
+    function mostrarAviso(idAviso) {
+
+        const aviso =
+            document.getElementById(idAviso);
+
+        if (!aviso) {
+
+            console.error(
+                `Aviso não encontrado: ${idAviso}`
+            );
+
+            return;
+        }
+
+        aviso.hidden = false;
+
+        aviso.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+
+    }
+
+
+    function esconderAviso(idAviso) {
+
+        const aviso =
+            document.getElementById(idAviso);
+
+        if (!aviso) {
+            return;
+        }
+
+        aviso.hidden = true;
+
+    }
+
+
+    function esconderResultado(idResultado) {
+
+        const resultado =
+            document.getElementById(idResultado);
+
+        if (!resultado) {
+            return;
+        }
+
+        resultado.style.display = "none";
+
+    }
+
+
+    function mostrarResultadoNaTela(idResultado) {
+
+        const resultado =
+            document.getElementById(idResultado);
+
+        if (!resultado) {
+            return;
+        }
+
+        resultado.style.display = "";
+
+        resultado.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+
+    }
+
+
+    // =====================================================
+    // ESCONDE OS RESULTADOS AO ABRIR A PÁGINA
+    // =====================================================
+
+    esconderResultado("result13");
+    esconderResultado("resultFerias");
+    esconderResultado("resultFgts");
+    esconderResultado("resultExtra");
+    esconderResultado("resultRescisao");
 
 
     // =====================================================
     // MENU MOBILE
     // =====================================================
 
-    const menuButton = document.getElementById("menuButton");
-    const menu = document.getElementById("menu");
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const menu =
+        document.getElementById("menu");
+
 
     if (menuButton && menu) {
 
         menuButton.addEventListener("click", () => {
+
             menu.classList.toggle("open");
 
-            const aberto = menu.classList.contains("open");
+            const aberto =
+                menu.classList.contains("open");
 
             menuButton.setAttribute(
                 "aria-expanded",
                 aberto ? "true" : "false"
             );
+
         });
 
 
-        const menuLinks = menu.querySelectorAll("a");
+        const menuLinks =
+            menu.querySelectorAll("a");
+
 
         menuLinks.forEach(link => {
 
             link.addEventListener("click", () => {
+
                 menu.classList.remove("open");
-                menuButton.setAttribute("aria-expanded", "false");
+
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
             });
 
         });
+
     }
 
 
@@ -103,14 +271,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // CALCULADORA DE 13º SALÁRIO
     // =====================================================
 
-    const botao13 = document.getElementById("calculate13");
+    const botao13 =
+        document.getElementById("calculate13");
+
 
     if (botao13) {
 
         botao13.addEventListener("click", () => {
 
-            const salario = pegarNumero("salary");
-            const meses = pegarNumero("months");
+            const salario =
+                pegarNumero("salary");
+
+            const meses =
+                pegarNumero("months");
+
 
             if (salario <= 0) {
 
@@ -119,6 +293,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Informe o salário",
                     "Digite seu salário bruto."
                 );
+
+                mostrarResultadoNaTela("result13");
 
                 return;
             }
@@ -132,11 +308,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Informe uma quantidade entre 1 e 12 meses."
                 );
 
+                mostrarResultadoNaTela("result13");
+
                 return;
             }
 
 
-            const valor13 = (salario / 12) * meses;
+            const valor13 =
+                (salario / 12) * meses;
 
 
             mostrarResultado(
@@ -145,6 +324,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 valor13,
                 `${meses} mês(es) considerado(s).`
             );
+
+
+            // Mostra o aviso antes da confirmação
+            mostrarAviso("notice13");
 
         });
 
@@ -157,6 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const botaoFerias =
         document.getElementById("calculateFerias");
+
 
     if (botaoFerias) {
 
@@ -177,6 +361,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Digite seu salário bruto."
                 );
 
+                mostrarResultadoNaTela("resultFerias");
+
                 return;
             }
 
@@ -188,6 +374,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Dias inválidos",
                     "Informe entre 1 e 30 dias de férias."
                 );
+
+                mostrarResultadoNaTela("resultFerias");
 
                 return;
             }
@@ -216,6 +404,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 `
             );
 
+
+            mostrarAviso("noticeFerias");
+
         });
 
     }
@@ -227,6 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const botaoFgts =
         document.getElementById("calculateFgts");
+
 
     if (botaoFgts) {
 
@@ -247,6 +439,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Digite seu salário bruto mensal."
                 );
 
+                mostrarResultadoNaTela("resultFgts");
+
                 return;
             }
 
@@ -258,6 +452,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Informe os meses",
                     "Digite a quantidade de meses trabalhados."
                 );
+
+                mostrarResultadoNaTela("resultFgts");
 
                 return;
             }
@@ -284,6 +480,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 `
             );
 
+
+            mostrarAviso("noticeFgts");
+
         });
 
     }
@@ -295,6 +494,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const botaoExtra =
         document.getElementById("calculateExtra");
+
 
     if (botaoExtra) {
 
@@ -318,6 +518,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Digite seu salário bruto."
                 );
 
+                mostrarResultadoNaTela("resultExtra");
+
                 return;
             }
 
@@ -329,6 +531,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Informe as horas",
                     "Digite a quantidade de horas extras."
                 );
+
+                mostrarResultadoNaTela("resultExtra");
+
+                return;
+            }
+
+
+            if (percentual < 0) {
+
+                mostrarErro(
+                    "resultExtra",
+                    "Adicional inválido",
+                    "Informe um percentual válido."
+                );
+
+                mostrarResultadoNaTela("resultExtra");
 
                 return;
             }
@@ -373,6 +591,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 `
             );
 
+
+            mostrarAviso("noticeExtra");
+
         });
 
     }
@@ -384,6 +605,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const botaoRescisao =
         document.getElementById("calculateRescisao");
+
 
     if (botaoRescisao) {
 
@@ -407,6 +629,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Digite seu salário bruto."
                 );
 
+                mostrarResultadoNaTela("resultRescisao");
+
                 return;
             }
 
@@ -419,6 +643,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Informe entre 1 e 12 meses."
                 );
 
+                mostrarResultadoNaTela("resultRescisao");
+
                 return;
             }
 
@@ -430,6 +656,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Dias inválidos",
                     "Informe de 0 a 31 dias."
                 );
+
+                mostrarResultadoNaTela("resultRescisao");
 
                 return;
             }
@@ -502,9 +730,66 @@ document.addEventListener("DOMContentLoaded", () => {
                 `
             );
 
+
+            mostrarAviso("noticeRescisao");
+
         });
 
     }
+
+
+    // =====================================================
+    // BOTÕES "ESTOU CIENTE"
+    // =====================================================
+
+    const botoesCiencia =
+        document.querySelectorAll(
+            "[data-accept-calculator]"
+        );
+
+
+    botoesCiencia.forEach(botao => {
+
+        botao.addEventListener("click", () => {
+
+            const idResultado =
+                botao.getAttribute(
+                    "data-accept-calculator"
+                );
+
+
+            if (!idResultado) {
+                return;
+            }
+
+
+            // Descobre automaticamente o aviso correspondente
+            const idAviso =
+                idResultado === "result13"
+                    ? "notice13"
+                    : idResultado === "resultFerias"
+                    ? "noticeFerias"
+                    : idResultado === "resultFgts"
+                    ? "noticeFgts"
+                    : idResultado === "resultExtra"
+                    ? "noticeExtra"
+                    : idResultado === "resultRescisao"
+                    ? "noticeRescisao"
+                    : null;
+
+
+            if (idAviso) {
+
+                esconderAviso(idAviso);
+
+            }
+
+
+            mostrarResultadoNaTela(idResultado);
+
+        });
+
+    });
 
 
     // =====================================================
@@ -514,9 +799,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const ano =
         document.getElementById("year");
 
+
     if (ano) {
+
         ano.textContent =
             new Date().getFullYear();
+
     }
 
 
@@ -529,24 +817,29 @@ document.addEventListener("DOMContentLoaded", () => {
         botao13 ? "OK" : "NÃO ENCONTRADA"
     );
 
+
     console.log(
         "Calculadora férias:",
         botaoFerias ? "OK" : "NÃO ENCONTRADA"
     );
+
 
     console.log(
         "Calculadora FGTS:",
         botaoFgts ? "OK" : "NÃO ENCONTRADA"
     );
 
+
     console.log(
         "Calculadora horas extras:",
         botaoExtra ? "OK" : "NÃO ENCONTRADA"
     );
 
+
     console.log(
         "Calculadora rescisão:",
         botaoRescisao ? "OK" : "NÃO ENCONTRADA"
     );
+
 
 });

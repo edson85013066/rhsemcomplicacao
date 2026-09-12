@@ -22,7 +22,7 @@ jobs:
       - name: Instalar ferramentas
         run: python3 -m pip install beautifulsoup4 --quiet
 
-      - name: Aplicar limpeza e melhorias
+      - name: Limpar e melhorar páginas
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -32,17 +32,17 @@ jobs:
           root = Path('.')
           changed = []
 
-          # Remove resíduos de geração/referências internas que nunca devem
-          # aparecer para o visitante. Também remove cercas Markdown acidentais
-          # que estejam dentro de HTML publicado.
           artifact_patterns = [
               re.compile(r':contentReference\[[^\]]*\]\{[^}]*\}', re.I),
               re.compile(r'oaicite:\s*\d+', re.I),
           ]
 
+          html_files = []
           for path in root.rglob('*.html'):
               if '.git' in path.parts:
                   continue
+              html_files.append(path)
+
               text = path.read_text(encoding='utf-8-sig')
               original = text
 
@@ -62,59 +62,82 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   changed.append(str(path))
 
-          # Remove da página inicial a calculadora de rescisão, preservando as
-          # demais calculadoras e seus scripts.
+          # Corrige links de navegação que apontam para uma âncora inexistente
+          # na home. A seção de artigos é o destino seguro para esse menu.
           index = root / 'index.html'
-          text = index.read_text(encoding='utf-8-sig')
-          original = text
-          soup = BeautifulSoup(text, 'html.parser')
-          for box in soup.select('.calculator'):
-              h3 = box.find('h3')
-              if h3 and 'calculadora de rescisão' in h3.get_text(' ', strip=True).lower():
-                  box.decompose()
-          text = str(soup)
+          index_text = index.read_text(encoding='utf-8-sig')
+          original_index = index_text
+          soup = BeautifulSoup(index_text, 'html.parser')
+          ids = {tag.get('id') for tag in soup.find_all(attrs={'id': True})}
+          for a in soup.find_all('a', href=True):
+              href = a['href']
+              if href.startswith('#') and href[1:] not in ids:
+                  a['href'] = '#artigos'
+          index_text = str(soup)
+          if index_text != original_index:
+              index.write_text(index_text, encoding='utf-8')
+              changed.append('index.html')
 
-          if text != original:
-              index.write_text(text, encoding='utf-8')
-              if 'index.html' not in changed:
-                  changed.append('index.html')
+          # Corrige as mesmas âncoras inexistentes nos menus internos dos artigos.
+          for path in html_files:
+              if path == index:
+                  continue
+              text = path.read_text(encoding='utf-8-sig')
+              original = text
+              text = text.replace('../index.html#rescisao', '../index.html#artigos')
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
 
-          # Cria na home uma seção editorial útil, sem promessas de aconselhamento,
-          # explicando como o visitante deve consultar os materiais.
-          text = index.read_text(encoding='utf-8')
-          if 'id="como-usar-conteudo"' not in text:
-              marker = '<section class="section" id="rescisao"'
-              section = '''<section class="section" id="como-usar-conteudo" aria-labelledby="titulo-como-usar-conteudo">\n<div class="container">\n<span class="tag">COMO USAR O RH SEM COMPLICAÇÃO</span>\n<h2 id="titulo-como-usar-conteudo">Informação trabalhista para consultar antes de agir</h2>\n<p>O RH sem Complicação reúne explicações, exemplos, fontes oficiais e ferramentas estimativas para ajudar o trabalhador a compreender situações comuns da vida profissional.</p>\n<div class="article-highlight">\n<strong>Como consultar:</strong> encontre o tema relacionado ao seu caso, leia a explicação completa, confira exemplos e exceções e consulte a legislação indicada. Se a situação depender de contrato, categoria profissional ou convenção coletiva, confirme os detalhes antes de tomar uma decisão.\n</div>\n<p>Os materiais têm finalidade educativa e informativa. Eles não substituem a análise individual de documentos nem orientação jurídica ou profissional.</p>\n</div>\n</section>\n\n'''
-              if marker in text:
-                  text = text.replace(marker, section + marker, 1)
-              else:
-                  text = text.replace('</main>', section + '</main>', 1)
-              index.write_text(text, encoding='utf-8')
-              if 'index.html' not in changed:
-                  changed.append('index.html')
+          # Reforça autoria visível nos artigos, sem alegar formação profissional
+          # que não foi informada. O texto é factual e não constitui aconselhamento.
+          for path in html_files:
+              if path == index:
+                  continue
+              text = path.read_text(encoding='utf-8-sig')
+              if 'class="article-byline"' not in text and '<div class="article-header">' in text:
+                  byline = '''\n<p class="article-byline"><strong>Por Edson Emanuel Previatti</strong> — Profissional de Recursos Humanos</p>\n'''
+                  text = text.replace('</div>\n\n\n\n        <article class="article-content">', '</div>' + byline + '\n\n        <article class="article-content">', 1)
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
 
           print('Arquivos alterados:')
           for item in sorted(set(changed)):
               print(' -', item)
           PY
 
-      - name: Verificar arquivos
+      - name: Verificar qualidade mínima
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
-          files = list(Path('.').rglob('*.html'))
+          from bs4 import BeautifulSoup
+
+          files = [p for p in Path('.').rglob('*.html') if '.git' not in p.parts]
           errors = []
+
           for p in files:
               t = p.read_text(encoding='utf-8-sig', errors='replace')
+              low = t.lower()
               if re.search(r':contentReference\[|oaicite\s*:', t, re.I):
                   errors.append(f'Resíduo de referência: {p}')
               if '```' in t:
                   errors.append(f'Cerca Markdown dentro do HTML: {p}')
-              if '<h1' not in t.lower():
+              soup = BeautifulSoup(t, 'html.parser')
+              if not soup.find('h1'):
                   errors.append(f'Sem H1: {p}')
-              if '<title' not in t.lower():
+              if not soup.find('title'):
                   errors.append(f'Sem title: {p}')
+              if not soup.find('main'):
+                  errors.append(f'Sem main: {p}')
+
+              # Links de fragmento na própria página devem apontar para IDs existentes.
+              ids = {tag.get('id') for tag in soup.find_all(attrs={'id': True})}
+              for a in soup.find_all('a', href=True):
+                  href = a['href']
+                  if href.startswith('#') and href[1:] and href[1:] not in ids:
+                      errors.append(f'Âncora inexistente {href}: {p}')
+
           if errors:
               raise SystemExit('\n'.join(errors))
           print(f'OK: {len(files)} arquivos HTML verificados.')
@@ -128,6 +151,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nenhuma alteração para publicar."
           else
-            git commit -m "Limpa artefatos e melhora preparação para AdSense [skip ci]"
+            git commit -m "Melhora qualidade editorial e navegação para AdSense [skip ci]"
             git push
           fi

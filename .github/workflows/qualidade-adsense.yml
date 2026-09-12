@@ -6,6 +6,7 @@ on:
     paths:
       - '**.html'
       - 'index.html'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 permissions:
@@ -31,8 +32,9 @@ jobs:
           root = Path('.')
           changed = []
 
-          # 1) Remove resíduos de referências internas que nunca devem aparecer
-          #    para o visitante e padroniza a identificação do autor.
+          # Remove resíduos de geração/referências internas que nunca devem
+          # aparecer para o visitante. Também remove cercas Markdown acidentais
+          # que estejam dentro de HTML publicado.
           artifact_patterns = [
               re.compile(r':contentReference\[[^\]]*\]\{[^}]*\}', re.I),
               re.compile(r'oaicite:\s*\d+', re.I),
@@ -47,6 +49,8 @@ jobs:
               for pattern in artifact_patterns:
                   text = pattern.sub('', text)
 
+              text = text.replace('```html', '').replace('```HTML', '').replace('```', '')
+
               text = re.sub(
                   r'<meta\s+name=["\']author["\']\s+content=["\'][^"\']*["\']\s*/?>',
                   '<meta name="author" content="Edson Emanuel Previatti">',
@@ -58,7 +62,8 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   changed.append(str(path))
 
-          # 2) Retira da página inicial a calculadora de rescisão.
+          # Remove da página inicial a calculadora de rescisão, preservando as
+          # demais calculadoras e seus scripts.
           index = root / 'index.html'
           text = index.read_text(encoding='utf-8-sig')
           original = text
@@ -74,12 +79,12 @@ jobs:
               if 'index.html' not in changed:
                   changed.append('index.html')
 
-          # 3) Acrescenta uma seção editorial na home, explicando como usar
-          #    os conteúdos e deixando claro o caráter informativo.
+          # Cria na home uma seção editorial útil, sem promessas de aconselhamento,
+          # explicando como o visitante deve consultar os materiais.
           text = index.read_text(encoding='utf-8')
           if 'id="como-usar-conteudo"' not in text:
               marker = '<section class="section" id="rescisao"'
-              section = '''<section class="section" id="como-usar-conteudo" aria-labelledby="titulo-como-usar-conteudo">\n<div class="container">\n<span class="tag">COMO USAR O RH SEM COMPLICAÇÃO</span>\n<h2 id="titulo-como-usar-conteudo">Informação trabalhista para consultar antes de agir</h2>\n<p>O RH sem Complicação organiza explicações, exemplos, fontes oficiais e ferramentas estimativas para ajudar o trabalhador a entender situações comuns do dia a dia profissional.</p>\n<div class="article-highlight">\n<strong>Uma boa forma de consultar:</strong> leia o artigo relacionado ao seu caso, confira os detalhes e as exceções, consulte a legislação indicada e, quando necessário, confirme a situação com o RH da empresa ou com um profissional habilitado.\n</div>\n<p>Os conteúdos são educativos e não substituem análise individual de contrato, convenção coletiva, documentos ou orientação profissional. Quando uma regra depender da categoria ou de uma situação específica, essa ressalva deve ser considerada antes de qualquer decisão.</p>\n</div>\n</section>\n\n'''
+              section = '''<section class="section" id="como-usar-conteudo" aria-labelledby="titulo-como-usar-conteudo">\n<div class="container">\n<span class="tag">COMO USAR O RH SEM COMPLICAÇÃO</span>\n<h2 id="titulo-como-usar-conteudo">Informação trabalhista para consultar antes de agir</h2>\n<p>O RH sem Complicação reúne explicações, exemplos, fontes oficiais e ferramentas estimativas para ajudar o trabalhador a compreender situações comuns da vida profissional.</p>\n<div class="article-highlight">\n<strong>Como consultar:</strong> encontre o tema relacionado ao seu caso, leia a explicação completa, confira exemplos e exceções e consulte a legislação indicada. Se a situação depender de contrato, categoria profissional ou convenção coletiva, confirme os detalhes antes de tomar uma decisão.\n</div>\n<p>Os materiais têm finalidade educativa e informativa. Eles não substituem a análise individual de documentos nem orientação jurídica ou profissional.</p>\n</div>\n</section>\n\n'''
               if marker in text:
                   text = text.replace(marker, section + marker, 1)
               else:
@@ -89,7 +94,7 @@ jobs:
                   changed.append('index.html')
 
           print('Arquivos alterados:')
-          for item in changed:
+          for item in sorted(set(changed)):
               print(' -', item)
           PY
 
@@ -104,6 +109,8 @@ jobs:
               t = p.read_text(encoding='utf-8-sig', errors='replace')
               if re.search(r':contentReference\[|oaicite\s*:', t, re.I):
                   errors.append(f'Resíduo de referência: {p}')
+              if '```' in t:
+                  errors.append(f'Cerca Markdown dentro do HTML: {p}')
               if '<h1' not in t.lower():
                   errors.append(f'Sem H1: {p}')
               if '<title' not in t.lower():
@@ -121,6 +128,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nenhuma alteração para publicar."
           else
-            git commit -m "Melhora qualidade editorial e prepara site para AdSense [skip ci]"
+            git commit -m "Limpa artefatos e melhora preparação para AdSense [skip ci]"
             git push
           fi

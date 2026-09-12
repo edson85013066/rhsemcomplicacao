@@ -18,11 +18,15 @@ jobs:
       - name: Baixar repositório
         uses: actions/checkout@v4
 
+      - name: Instalar ferramentas
+        run: python3 -m pip install beautifulsoup4 --quiet
+
       - name: Aplicar limpeza e melhorias
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
+          from bs4 import BeautifulSoup
 
           root = Path('.')
           changed = []
@@ -54,30 +58,24 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   changed.append(str(path))
 
-          # 2) Retira da página inicial a calculadora de rescisão, conforme a
-          #    decisão editorial do projeto de não oferecer essa ferramenta.
+          # 2) Retira da página inicial a calculadora de rescisão.
           index = root / 'index.html'
           text = index.read_text(encoding='utf-8-sig')
           original = text
-
-          try:
-              from bs4 import BeautifulSoup
-              soup = BeautifulSoup(text, 'html.parser')
-              for box in soup.select('.calculator'):
-                  h3 = box.find('h3')
-                  if h3 and 'calculadora de rescisão' in h3.get_text(' ', strip=True).lower():
-                      box.decompose()
-              text = str(soup)
-          except Exception as exc:
-              print(f'BeautifulSoup indisponível: {exc}')
+          soup = BeautifulSoup(text, 'html.parser')
+          for box in soup.select('.calculator'):
+              h3 = box.find('h3')
+              if h3 and 'calculadora de rescisão' in h3.get_text(' ', strip=True).lower():
+                  box.decompose()
+          text = str(soup)
 
           if text != original:
               index.write_text(text, encoding='utf-8')
               if 'index.html' not in changed:
                   changed.append('index.html')
 
-          # 3) Acrescenta uma seção editorial na home, explicando como o leitor
-          #    deve usar as informações e deixando claro o caráter informativo.
+          # 3) Acrescenta uma seção editorial na home, explicando como usar
+          #    os conteúdos e deixando claro o caráter informativo.
           text = index.read_text(encoding='utf-8')
           if 'id="como-usar-conteudo"' not in text:
               marker = '<section class="section" id="rescisao"'
@@ -94,9 +92,6 @@ jobs:
           for item in changed:
               print(' -', item)
           PY
-
-      - name: Instalar verificador HTML
-        run: python3 -m pip install beautifulsoup4 --quiet
 
       - name: Verificar arquivos
         run: |

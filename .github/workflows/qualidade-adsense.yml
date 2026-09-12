@@ -1,0 +1,131 @@
+name: Melhorias de qualidade para AdSense
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'index.html'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Aplicar limpeza e melhorias
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          changed = []
+
+          # 1) Remove resíduos de referências internas que nunca devem aparecer
+          #    para o visitante e padroniza a identificação do autor.
+          artifact_patterns = [
+              re.compile(r':contentReference\[[^\]]*\]\{[^}]*\}', re.I),
+              re.compile(r'oaicite:\s*\d+', re.I),
+          ]
+
+          for path in root.rglob('*.html'):
+              if '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8-sig')
+              original = text
+
+              for pattern in artifact_patterns:
+                  text = pattern.sub('', text)
+
+              text = re.sub(
+                  r'<meta\s+name=["\']author["\']\s+content=["\'][^"\']*["\']\s*/?>',
+                  '<meta name="author" content="Edson Emanuel Previatti">',
+                  text,
+                  flags=re.I,
+              )
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+
+          # 2) Retira da página inicial a calculadora de rescisão, conforme a
+          #    decisão editorial do projeto de não oferecer essa ferramenta.
+          index = root / 'index.html'
+          text = index.read_text(encoding='utf-8-sig')
+          original = text
+
+          try:
+              from bs4 import BeautifulSoup
+              soup = BeautifulSoup(text, 'html.parser')
+              for box in soup.select('.calculator'):
+                  h3 = box.find('h3')
+                  if h3 and 'calculadora de rescisão' in h3.get_text(' ', strip=True).lower():
+                      box.decompose()
+              text = str(soup)
+          except Exception as exc:
+              print(f'BeautifulSoup indisponível: {exc}')
+
+          if text != original:
+              index.write_text(text, encoding='utf-8')
+              if 'index.html' not in changed:
+                  changed.append('index.html')
+
+          # 3) Acrescenta uma seção editorial na home, explicando como o leitor
+          #    deve usar as informações e deixando claro o caráter informativo.
+          text = index.read_text(encoding='utf-8')
+          if 'id="como-usar-conteudo"' not in text:
+              marker = '<section class="section" id="rescisao"'
+              section = '''<section class="section" id="como-usar-conteudo" aria-labelledby="titulo-como-usar-conteudo">\n<div class="container">\n<span class="tag">COMO USAR O RH SEM COMPLICAÇÃO</span>\n<h2 id="titulo-como-usar-conteudo">Informação trabalhista para consultar antes de agir</h2>\n<p>O RH sem Complicação organiza explicações, exemplos, fontes oficiais e ferramentas estimativas para ajudar o trabalhador a entender situações comuns do dia a dia profissional.</p>\n<div class="article-highlight">\n<strong>Uma boa forma de consultar:</strong> leia o artigo relacionado ao seu caso, confira os detalhes e as exceções, consulte a legislação indicada e, quando necessário, confirme a situação com o RH da empresa ou com um profissional habilitado.\n</div>\n<p>Os conteúdos são educativos e não substituem análise individual de contrato, convenção coletiva, documentos ou orientação profissional. Quando uma regra depender da categoria ou de uma situação específica, essa ressalva deve ser considerada antes de qualquer decisão.</p>\n</div>\n</section>\n\n'''
+              if marker in text:
+                  text = text.replace(marker, section + marker, 1)
+              else:
+                  text = text.replace('</main>', section + '</main>', 1)
+              index.write_text(text, encoding='utf-8')
+              if 'index.html' not in changed:
+                  changed.append('index.html')
+
+          print('Arquivos alterados:')
+          for item in changed:
+              print(' -', item)
+          PY
+
+      - name: Instalar verificador HTML
+        run: python3 -m pip install beautifulsoup4 --quiet
+
+      - name: Verificar arquivos
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          files = list(Path('.').rglob('*.html'))
+          errors = []
+          for p in files:
+              t = p.read_text(encoding='utf-8-sig', errors='replace')
+              if re.search(r':contentReference\[|oaicite\s*:', t, re.I):
+                  errors.append(f'Resíduo de referência: {p}')
+              if '<h1' not in t.lower():
+                  errors.append(f'Sem H1: {p}')
+              if '<title' not in t.lower():
+                  errors.append(f'Sem title: {p}')
+          if errors:
+              raise SystemExit('\n'.join(errors))
+          print(f'OK: {len(files)} arquivos HTML verificados.')
+          PY
+
+      - name: Publicar alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html artigos .github/workflows/qualidade-adsense.yml
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteração para publicar."
+          else
+            git commit -m "Melhora qualidade editorial e prepara site para AdSense [skip ci]"
+            git push
+          fi

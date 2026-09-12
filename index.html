@@ -12,6 +12,8 @@
 
 <meta name="author" content="Edson Emanuel Previatti">
 
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 <meta
 name="robots"
 content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -25,7 +27,7 @@ content="index, follow, max-image-preview:large, max-snippet:-1, max-video-previ
 >
 
 <!-- =====================================================
-     SEO
+     SEO PRINCIPAL
 ===================================================== -->
 
 <title>RH sem Complicação | Direitos Trabalhistas, Calculadoras e Informações</title>
@@ -55,6 +57,27 @@ content="RH sem Complicação: informações claras sobre direitos trabalhistas,
     async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8038804495460874"
     crossorigin="anonymous">
+</script>
+
+<!-- =====================================================
+     GOOGLE ANALYTICS
+===================================================== -->
+
+<script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-7EGF3XRHS7">
+</script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'G-7EGF3XRHS7');
 </script>
 
 <!-- =====================================================
@@ -115,6 +138,18 @@ content="image/jpeg"
 
 >
 
+<meta
+property="og:image:width"
+content="400"
+
+>
+
+<meta
+property="og:image:height"
+content="400"
+
+>
+
 <!-- =====================================================
      TWITTER / X
 ===================================================== -->
@@ -150,19 +185,23 @@ content="Edson Emanuel Previatti - RH sem Complicação"
 >
 
 <!-- =====================================================
-     DADOS ESTRUTURADOS: WEBSITE
+     DADOS ESTRUTURADOS: ORGANIZAÇÃO
 ===================================================== -->
 
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://rhsemcomplicacao.netlify.app/#website",
+    "@type": "Organization",
+    "@id": "https://rhsemcomplicacao.netlify.app/#organization",
     "name": "RH sem Complicação",
     "url": "https://rhsemcomplicacao.netlify.app/",
-    "description": "Portal informativo sobre direitos trabalhistas, cálculos e informações relacionadas ao trabalho.",
-    "inLanguage": "pt-BR",
-    "publisher": {
+    "logo": {
+        "@type": "ImageObject",
+        "url": "https://rhsemcomplicacao.netlify.app/imagen/perfil%20sit.jpeg",
+        "width": 400,
+        "height": 400
+    },
+    "founder": {
         "@id": "https://rhsemcomplicacao.netlify.app/#person"
     }
 }
@@ -179,23 +218,29 @@ content="Edson Emanuel Previatti - RH sem Complicação"
     "@id": "https://rhsemcomplicacao.netlify.app/#person",
     "name": "Edson Emanuel Previatti",
     "url": "https://rhsemcomplicacao.netlify.app/",
-    "jobTitle": "Profissional de Recursos Humanos"
+    "jobTitle": "Profissional de Recursos Humanos",
+    "image": "https://rhsemcomplicacao.netlify.app/imagen/perfil%20sit.jpeg",
+    "worksFor": {
+        "@id": "https://rhsemcomplicacao.netlify.app/#organization"
+    }
 }
 </script>
 
 <!-- =====================================================
-     DADOS ESTRUTURADOS: ORGANIZAÇÃO
+     DADOS ESTRUTURADOS: WEBSITE
 ===================================================== -->
 
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://rhsemcomplicacao.netlify.app/#organization",
+    "@type": "WebSite",
+    "@id": "https://rhsemcomplicacao.netlify.app/#website",
     "name": "RH sem Complicação",
     "url": "https://rhsemcomplicacao.netlify.app/",
-    "founder": {
-        "@id": "https://rhsemcomplicacao.netlify.app/#person"
+    "description": "Portal informativo sobre direitos trabalhistas, cálculos e informações relacionadas ao trabalho.",
+    "inLanguage": "pt-BR",
+    "publisher": {
+        "@id": "https://rhsemcomplicacao.netlify.app/#organization"
     }
 }
 </script>
@@ -215,10 +260,17 @@ content="Edson Emanuel Previatti - RH sem Complicação"
     "isPartOf": {
         "@id": "https://rhsemcomplicacao.netlify.app/#website"
     },
+    "mainEntityOfPage": {
+        "@id": "https://rhsemcomplicacao.netlify.app/#website"
+    },
     "author": {
         "@id": "https://rhsemcomplicacao.netlify.app/#person"
     },
-    "inLanguage": "pt-BR"
+    "publisher": {
+        "@id": "https://rhsemcomplicacao.netlify.app/#organization"
+    },
+    "inLanguage": "pt-BR",
+    "isAccessibleForFree": true
 }
 </script>
 
@@ -256,7 +308,6 @@ aria-label="RH sem Complicação - Página inicial"
 
 >
 
-
 <div
     class="logo-icon"
     aria-hidden="true"
@@ -267,7 +318,6 @@ aria-label="RH sem Complicação - Página inicial"
 <div class="logo-text">
     RH sem <strong>Complicação</strong>
 </div>
-
 
 </a>
 
@@ -281,9 +331,9 @@ type="button"
 
 >
 
-
+```
 ☰
-
+```
 
 </button>
 
@@ -292,7 +342,6 @@ type="button"
     id="menu"
     aria-label="Menu principal"
 >
-
 
 <a href="#inicio">Início</a>
 
@@ -316,7 +365,6 @@ type="button"
 
 <a href="#contato">Contato</a>
 
-
 </nav>
 
 </div>
@@ -339,69 +387,80 @@ type="button"
 
 <div class="hero-content">
 
-
 <span class="tag">
     RH SEM COMPLICAÇÃO
 </span>
 
 <h1 id="titulo-principal">
 
-    Seus direitos trabalhistas,
+```
+Seus direitos trabalhistas,
 
-    <span>
-        sem complicação.
-    </span>
+<span>
+    sem complicação.
+</span>
+```
 
 </h1>
 
 <p>
 
-    O RH sem Complicação reúne informações sobre
-    direitos trabalhistas em uma linguagem simples,
-    com exemplos práticos, artigos explicativos,
-    calculadoras gratuitas e acesso a fontes oficiais.
+```
+O RH sem Complicação reúne informações sobre
+direitos trabalhistas em uma linguagem simples,
+com exemplos práticos, artigos explicativos,
+calculadoras gratuitas e acesso a fontes oficiais.
+```
 
 </p>
 
 <div class="hero-buttons">
 
-    <a
-        href="#calculadoras"
-        class="button button-primary"
-    >
-        🧮 Ver calculadoras trabalhistas
-    </a>
+<a
+href="#calculadoras"
+class="button button-primary"
 
-    <a
-        href="#artigos"
-        class="button button-secondary"
-    >
-        📚 Ler artigos trabalhistas
-    </a>
+>
+
+```
+🧮 Ver calculadoras trabalhistas
+```
+
+</a>
+
+<a
+href="#artigos"
+class="button button-secondary"
+
+>
+
+```
+📚 Ler artigos trabalhistas
+```
+
+</a>
 
 </div>
 
 <div class="hero-features">
 
-    <span>
-        ✓ Linguagem simples
-    </span>
+<span>
+    ✓ Linguagem simples
+</span>
 
-    <span>
-        ✓ Conteúdo organizado
-    </span>
+<span>
+    ✓ Conteúdo organizado
+</span>
 
-    <span>
-        ✓ Cálculos estimativos
-    </span>
+<span>
+    ✓ Cálculos estimativos
+</span>
 
 </div>
-
 
 </div>
 
 <div class="hero-card">
-
 
 <div
     class="hero-card-icon"
@@ -416,20 +475,26 @@ type="button"
 
 <p>
 
-    Consulte explicações sobre situações comuns
-    da vida profissional, confira exemplos de
-    cálculos e encontre links para consultar
-    diretamente fontes oficiais.
+```
+Consulte explicações sobre situações comuns
+da vida profissional, confira exemplos de
+cálculos e encontre links para consultar
+diretamente fontes oficiais.
+```
 
 </p>
 
 <a
-    href="#direitos"
-    class="card-link"
->
-    Conhecer meus direitos →
-</a>
+href="#direitos"
+class="card-link"
 
+>
+
+```
+Conhecer meus direitos →
+```
+
+</a>
 
 </div>
 
@@ -451,7 +516,6 @@ type="button"
 
 <div>
 
-
 <span class="tag">
     SOBRE O CONTEÚDO
 </span>
@@ -462,96 +526,97 @@ type="button"
 
 <p>
 
-    O RH sem Complicação foi criado para facilitar
-    o acesso a informações relacionadas ao trabalho.
-    Em vez de apresentar apenas termos técnicos,
-    o projeto procura explicar as regras de maneira
-    clara, organizada e próxima das situações que
-    o trabalhador encontra no dia a dia.
+```
+O RH sem Complicação foi criado para facilitar
+o acesso a informações relacionadas ao trabalho.
+Em vez de apresentar apenas termos técnicos,
+o projeto procura explicar as regras de maneira
+clara, organizada e próxima das situações que
+o trabalhador encontra no dia a dia.
+```
 
 </p>
 
 <p>
 
-    Os conteúdos abordam assuntos como férias,
-    13º salário, FGTS, rescisão, aviso-prévio,
-    horas extras e outros direitos trabalhistas.
-    Quando existe uma forma prática de demonstrar
-    uma regra, são utilizados exemplos e cálculos
-    ilustrativos para facilitar a compreensão.
+```
+Os conteúdos abordam assuntos como férias,
+13º salário, FGTS, rescisão, aviso-prévio,
+horas extras e outros direitos trabalhistas.
+Quando existe uma forma prática de demonstrar
+uma regra, são utilizados exemplos e cálculos
+ilustrativos para facilitar a compreensão.
+```
 
 </p>
-
 
 </div>
 
 <div>
 
-
 <div class="simple-list">
 
-    <div>
+<div>
 
-        <span aria-hidden="true">
-            ✓
-        </span>
+<span aria-hidden="true">
+    ✓
+</span>
 
-        <strong>
-            Explicações em linguagem simples
-        </strong>
-
-    </div>
-
-    <div>
-
-        <span aria-hidden="true">
-            ✓
-        </span>
-
-        <strong>
-            Exemplos para facilitar a compreensão
-        </strong>
-
-    </div>
-
-    <div>
-
-        <span aria-hidden="true">
-            ✓
-        </span>
-
-        <strong>
-            Calculadoras com resultados estimativos
-        </strong>
-
-    </div>
-
-    <div>
-
-        <span aria-hidden="true">
-            ✓
-        </span>
-
-        <strong>
-            Links para fontes oficiais
-        </strong>
-
-    </div>
-
-    <div>
-
-        <span aria-hidden="true">
-            ✓
-        </span>
-
-        <strong>
-            Conteúdo voltado à orientação informativa
-        </strong>
-
-    </div>
+<strong>
+    Explicações em linguagem simples
+</strong>
 
 </div>
 
+<div>
+
+<span aria-hidden="true">
+    ✓
+</span>
+
+<strong>
+    Exemplos para facilitar a compreensão
+</strong>
+
+</div>
+
+<div>
+
+<span aria-hidden="true">
+    ✓
+</span>
+
+<strong>
+    Calculadoras com resultados estimativos
+</strong>
+
+</div>
+
+<div>
+
+<span aria-hidden="true">
+    ✓
+</span>
+
+<strong>
+    Links para fontes oficiais
+</strong>
+
+</div>
+
+<div>
+
+<span aria-hidden="true">
+    ✓
+</span>
+
+<strong>
+    Conteúdo voltado à orientação informativa
+</strong>
+
+</div>
+
+</div>
 
 </div>
 
@@ -573,171 +638,187 @@ type="button"
 
 <div class="section-title">
 
-
 <div>
 
-    <span class="tag">
-        DIREITOS TRABALHISTAS
-    </span>
+<span class="tag">
+    DIREITOS TRABALHISTAS
+</span>
 
-    <h2 id="titulo-direitos">
-        Encontre informações sobre seus direitos
-    </h2>
+<h2 id="titulo-direitos">
+    Encontre informações sobre seus direitos
+</h2>
 
 </div>
 
 <p>
 
-    Consulte os principais temas trabalhistas
-    abordados no RH sem Complicação e acesse
-    explicações mais completas sobre cada assunto.
+```
+Consulte os principais temas trabalhistas
+abordados no RH sem Complicação e acesse
+explicações mais completas sobre cada assunto.
+```
 
 </p>
-
 
 </div>
 
 <div class="cards">
 
-
 <a
-    href="artigos/rescisao.html"
-    class="topic-card"
+href="artigos/rescisao.html"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        📄
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    📄
+</div>
 
-    <h3>
-        Rescisão
-    </h3>
+<h3>
+    Rescisão
+</h3>
 
-    <p>
+<p>
 
-        Entenda as principais modalidades de
-        encerramento do contrato e as verbas
-        que podem estar envolvidas.
+```
+Entenda as principais modalidades de
+encerramento do contrato e as verbas
+que podem estar envolvidas.
+```
 
-    </p>
+</p>
 
 </a>
 
 <a
-    href="artigos/ferias.html"
-    class="topic-card"
+href="artigos/ferias.html"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        🌴
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    🌴
+</div>
 
-    <h3>
-        Férias
-    </h3>
+<h3>
+    Férias
+</h3>
 
-    <p>
+<p>
 
-        Entenda período aquisitivo, férias
-        proporcionais, férias vencidas,
-        adicional de 1/3 e abono.
+```
+Entenda período aquisitivo, férias
+proporcionais, férias vencidas,
+adicional de 1/3 e abono.
+```
 
-    </p>
+</p>
 
 </a>
 
 <a
-    href="artigos/decimo-terceiro.html"
-    class="topic-card"
+href="artigos/decimo-terceiro.html"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        🎄
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    🎄
+</div>
 
-    <h3>
-        13º Salário
-    </h3>
+<h3>
+    13º Salário
+</h3>
 
-    <p>
+<p>
 
-        Saiba como funciona o décimo terceiro,
-        suas parcelas, cálculo e situações
-        proporcionais.
+```
+Saiba como funciona o décimo terceiro,
+suas parcelas, cálculo e situações
+proporcionais.
+```
 
-    </p>
+</p>
 
 </a>
 
 <a
-    href="artigos/fgts.html"
-    class="topic-card"
+href="artigos/fgts.html"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        💰
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    💰
+</div>
 
-    <h3>
-        FGTS
-    </h3>
+<h3>
+    FGTS
+</h3>
 
-    <p>
+<p>
 
-        Entenda depósitos, saques, multa
-        rescisória e outras situações
-        relacionadas ao FGTS.
+```
+Entenda depósitos, saques, multa
+rescisória e outras situações
+relacionadas ao FGTS.
+```
 
-    </p>
+</p>
 
 </a>
 
 <a
-    href="artigos/horas-extras.html"
-    class="topic-card"
+href="artigos/horas-extras.html"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        ⏱️
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    ⏱️
+</div>
 
-    <h3>
-        Horas Extras
-    </h3>
+<h3>
+    Horas Extras
+</h3>
 
-    <p>
+<p>
 
-        Entenda adicionais, exemplos de cálculo,
-        jornada e situações relacionadas
-        às horas trabalhadas além da jornada.
+```
+Entenda adicionais, exemplos de cálculo,
+jornada e situações relacionadas
+às horas trabalhadas além da jornada.
+```
 
-    </p>
+</p>
 
 </a>
 
 <a
-    href="artigos/direitos-do-trabalhador.html"
-    class="topic-card"
+href="artigos/direitos-do-trabalhador.html"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        ⚖️
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    ⚖️
+</div>
 
-    <h3>
-        Direitos Trabalhistas
-    </h3>
+<h3>
+    Direitos Trabalhistas
+</h3>
 
-    <p>
+<p>
 
-        Consulte uma visão geral dos principais
-        direitos e encontre conteúdos específicos
-        para aprofundar cada tema.
+```
+Consulte uma visão geral dos principais
+direitos e encontre conteúdos específicos
+para aprofundar cada tema.
+```
 
-    </p>
+</p>
 
 </a>
-
 
 </div>
 
@@ -759,28 +840,28 @@ type="button"
 
 <div class="section-title calculators-title">
 
-
 <div>
 
-    <span class="tag">
-        FERRAMENTAS GRATUITAS
-    </span>
+<span class="tag">
+    FERRAMENTAS GRATUITAS
+</span>
 
-    <h2 id="titulo-calculadoras">
-        Calculadoras trabalhistas gratuitas
-    </h2>
+<h2 id="titulo-calculadoras">
+    Calculadoras trabalhistas gratuitas
+</h2>
 
 </div>
 
 <p>
 
-    As ferramentas abaixo ajudam a fazer estimativas
-    simples com base nas informações inseridas.
-    O resultado deve ser interpretado junto às regras
-    aplicáveis a cada situação.
+```
+As ferramentas abaixo ajudam a fazer estimativas
+simples com base nas informações inseridas.
+O resultado deve ser interpretado junto às regras
+aplicáveis a cada situação.
+```
 
 </p>
-
 
 </div>
 
@@ -789,110 +870,120 @@ type="button"
     style="margin-bottom:30px;"
 >
 
-
 <p>
 
-    Uma calculadora trabalhista pode ser útil para
-    obter uma primeira estimativa, mas o valor real
-    pode depender de fatores que não estão presentes
-    em um cálculo simplificado. Convenções coletivas,
-    adicionais, faltas, afastamentos, mudanças salariais,
-    características do contrato e outras circunstâncias
-    podem alterar o resultado.
+```
+Uma calculadora trabalhista pode ser útil para
+obter uma primeira estimativa, mas o valor real
+pode depender de fatores que não estão presentes
+em um cálculo simplificado. Convenções coletivas,
+adicionais, faltas, afastamentos, mudanças salariais,
+características do contrato e outras circunstâncias
+podem alterar o resultado.
+```
 
 </p>
 
 <p>
 
-    Por isso, utilize os resultados como referência
-    inicial e confira os documentos e as regras
-    aplicáveis à sua situação.
+```
+Por isso, utilize os resultados como referência
+inicial e confira os documentos e as regras
+aplicáveis à sua situação.
+```
 
 </p>
-
 
 </div>
 
 <div class="calculator-grid">
 
-
 <!-- 13º -->
 
 <div class="calculator">
 
-    <h3>
-        🎄 Calculadora de 13º salário
-    </h3>
+<h3>
+    🎄 Calculadora de 13º salário
+</h3>
 
-    <p class="small-text">
+<p class="small-text">
 
-        Informe o salário bruto e a quantidade
-        de meses considerados para obter uma
-        estimativa do 13º.
+```
+Informe o salário bruto e a quantidade
+de meses considerados para obter uma
+estimativa do 13º.
+```
 
-    </p>
+</p>
 
-    <label for="salary">
-        Salário bruto
-    </label>
+<label for="salary">
+    Salário bruto
+</label>
 
-    <div class="money-input">
+<div class="money-input">
 
-        <span aria-hidden="true">
-            R$
-        </span>
+<span aria-hidden="true">
+    R$
+</span>
 
-        <input
-            type="number"
-            id="salary"
-            placeholder="2195.00"
-            min="0"
-            step="0.01"
-            inputmode="decimal"
-        >
+<input
+type="number"
+id="salary"
+placeholder="2195.00"
+min="0"
+step="0.01"
+inputmode="decimal"
 
-    </div>
+>
 
-    <label for="months">
-        Meses trabalhados
-    </label>
+</div>
 
-    <input
-        type="number"
-        id="months"
-        placeholder="12"
-        min="1"
-        max="12"
-        inputmode="numeric"
-    >
+<label for="months">
+    Meses trabalhados
+</label>
 
-    <button
-        class="button button-primary full-button"
-        id="calculate13"
-        type="button"
-    >
-        Calcular 13º salário
-    </button>
+<input
+type="number"
+id="months"
+placeholder="12"
+min="1"
+max="12"
+inputmode="numeric"
 
-    <div
-        class="result"
-        id="result13"
-        aria-live="polite"
-    >
+>
 
-        <span>
-            Resultado
-        </span>
+<button
+class="button button-primary full-button"
+id="calculate13"
+type="button"
 
-        <strong>
-            R$ 0,00
-        </strong>
+>
 
-        <small>
-            Preencha os campos para calcular.
-        </small>
+```
+Calcular 13º salário
+```
 
-    </div>
+</button>
+
+<div
+    class="result"
+    id="result13"
+    aria-live="polite"
+>
+
+<span>
+    Resultado
+</span>
+
+<strong>
+    R$ 0,00
+</strong>
+
+<small>
+    Preencha os campos para calcular.
+</small>
+
+</div>
 
 </div>
 
@@ -900,79 +991,88 @@ type="button"
 
 <div class="calculator">
 
-    <h3>
-        🌴 Calculadora de férias
-    </h3>
+<h3>
+    🌴 Calculadora de férias
+</h3>
 
-    <p class="small-text">
+<p class="small-text">
 
-        Estime o valor das férias considerando
-        o salário informado, os dias de férias
-        e o adicional de 1/3.
+```
+Estime o valor das férias considerando
+o salário informado, os dias de férias
+e o adicional de 1/3.
+```
 
-    </p>
+</p>
 
-    <label for="feriasSalary">
-        Salário bruto
-    </label>
+<label for="feriasSalary">
+    Salário bruto
+</label>
 
-    <div class="money-input">
+<div class="money-input">
 
-        <span aria-hidden="true">
-            R$
-        </span>
+<span aria-hidden="true">
+    R$
+</span>
 
-        <input
-            type="number"
-            id="feriasSalary"
-            placeholder="2195.00"
-            min="0"
-            step="0.01"
-            inputmode="decimal"
-        >
+<input
+type="number"
+id="feriasSalary"
+placeholder="2195.00"
+min="0"
+step="0.01"
+inputmode="decimal"
 
-    </div>
+>
 
-    <label for="feriasDays">
-        Dias de férias
-    </label>
+</div>
 
-    <input
-        type="number"
-        id="feriasDays"
-        value="30"
-        min="1"
-        max="30"
-        inputmode="numeric"
-    >
+<label for="feriasDays">
+    Dias de férias
+</label>
 
-    <button
-        class="button button-primary full-button"
-        id="calculateFerias"
-        type="button"
-    >
-        Calcular férias
-    </button>
+<input
+type="number"
+id="feriasDays"
+value="30"
+min="1"
+max="30"
+inputmode="numeric"
 
-    <div
-        class="result"
-        id="resultFerias"
-        aria-live="polite"
-    >
+>
 
-        <span>
-            Resultado
-        </span>
+<button
+class="button button-primary full-button"
+id="calculateFerias"
+type="button"
 
-        <strong>
-            R$ 0,00
-        </strong>
+>
 
-        <small>
-            Valor estimado das férias.
-        </small>
+```
+Calcular férias
+```
 
-    </div>
+</button>
+
+<div
+    class="result"
+    id="resultFerias"
+    aria-live="polite"
+>
+
+<span>
+    Resultado
+</span>
+
+<strong>
+    R$ 0,00
+</strong>
+
+<small>
+    Valor estimado das férias.
+</small>
+
+</div>
 
 </div>
 
@@ -980,79 +1080,88 @@ type="button"
 
 <div class="calculator">
 
-    <h3>
-        💰 Calculadora de FGTS
-    </h3>
+<h3>
+    💰 Calculadora de FGTS
+</h3>
 
-    <p class="small-text">
+<p class="small-text">
 
-        Estime os depósitos de FGTS a partir
-        do salário informado e do período
-        considerado no cálculo.
+```
+Estime os depósitos de FGTS a partir
+do salário informado e do período
+considerado no cálculo.
+```
 
-    </p>
+</p>
 
-    <label for="fgtsSalary">
-        Salário bruto mensal
-    </label>
+<label for="fgtsSalary">
+    Salário bruto mensal
+</label>
 
-    <div class="money-input">
+<div class="money-input">
 
-        <span aria-hidden="true">
-            R$
-        </span>
+<span aria-hidden="true">
+    R$
+</span>
 
-        <input
-            type="number"
-            id="fgtsSalary"
-            placeholder="2195.00"
-            min="0"
-            step="0.01"
-            inputmode="decimal"
-        >
+<input
+type="number"
+id="fgtsSalary"
+placeholder="2195.00"
+min="0"
+step="0.01"
+inputmode="decimal"
 
-    </div>
+>
 
-    <label for="fgtsMonths">
-        Meses trabalhados
-    </label>
+</div>
 
-    <input
-        type="number"
-        id="fgtsMonths"
-        placeholder="12"
-        min="1"
-        inputmode="numeric"
-    >
+<label for="fgtsMonths">
+    Meses trabalhados
+</label>
 
-    <button
-        class="button button-primary full-button"
-        id="calculateFgts"
-        type="button"
-    >
-        Calcular FGTS
-    </button>
+<input
+type="number"
+id="fgtsMonths"
+placeholder="12"
+min="1"
+inputmode="numeric"
 
-    <div
-        class="result"
-        id="resultFgts"
-        aria-live="polite"
-    >
+>
 
-        <span>
-            Depósito estimado
-        </span>
+<button
+class="button button-primary full-button"
+id="calculateFgts"
+type="button"
 
-        <strong>
-            R$ 0,00
-        </strong>
+>
 
-        <small>
-            Estimativa baseada no percentual utilizado
-            pela ferramenta.
-        </small>
+```
+Calcular FGTS
+```
 
-    </div>
+</button>
+
+<div
+    class="result"
+    id="resultFgts"
+    aria-live="polite"
+>
+
+<span>
+    Depósito estimado
+</span>
+
+<strong>
+    R$ 0,00
+</strong>
+
+<small>
+    Estimativa baseada no percentual utilizado
+    pela ferramenta.
+</small>
+
+</div>
 
 </div>
 
@@ -1060,110 +1169,116 @@ type="button"
 
 <div class="calculator">
 
-    <h3>
-        ⏱️ Calculadora de horas extras
-    </h3>
+<h3>
+    ⏱️ Calculadora de horas extras
+</h3>
 
-    <p class="small-text">
+<p class="small-text">
 
-        Faça uma estimativa do valor das horas
-        extras considerando o salário, quantidade
-        de horas e adicional informado.
+```
+Faça uma estimativa do valor das horas
+extras considerando o salário, quantidade
+de horas e adicional informado.
+```
 
-    </p>
+</p>
 
-    <label for="extraSalary">
-        Salário bruto
-    </label>
+<label for="extraSalary">
+    Salário bruto
+</label>
 
-    <div class="money-input">
+<div class="money-input">
 
-        <span aria-hidden="true">
-            R$
-        </span>
+<span aria-hidden="true">
+    R$
+</span>
 
-        <input
-            type="number"
-            id="extraSalary"
-            placeholder="2195.00"
-            min="0"
-            step="0.01"
-            inputmode="decimal"
-        >
+<input
+type="number"
+id="extraSalary"
+placeholder="2195.00"
+min="0"
+step="0.01"
+inputmode="decimal"
 
-    </div>
-
-    <label for="extraHours">
-        Horas extras
-    </label>
-
-    <input
-        type="number"
-        id="extraHours"
-        placeholder="10"
-        min="0"
-        step="0.5"
-        inputmode="decimal"
-    >
-
-    <label for="extraPercent">
-        Adicional
-    </label>
-
-    <select id="extraPercent">
-
-        <option value="50">
-            50%
-        </option>
-
-        <option value="100">
-            100%
-        </option>
-
-    </select>
-
-    <button
-        class="button button-primary full-button"
-        id="calculateExtra"
-        type="button"
-    >
-        Calcular horas extras
-    </button>
-
-    <div
-        class="result"
-        id="resultExtra"
-        aria-live="polite"
-    >
-
-        <span>
-            Valor estimado
-        </span>
-
-        <strong>
-            R$ 0,00
-        </strong>
-
-        <small>
-            Cálculo estimativo.
-        </small>
-
-    </div>
+>
 
 </div>
 
+<label for="extraHours">
+    Horas extras
+</label>
+
+<input
+type="number"
+id="extraHours"
+placeholder="10"
+min="0"
+step="0.5"
+inputmode="decimal"
+
+>
+
+<label for="extraPercent">
+    Adicional
+</label>
+
+<select id="extraPercent">
+
+<option value="50">
+    50%
+</option>
+
+<option value="100">
+    100%
+</option>
+
+</select>
+
+<button
+class="button button-primary full-button"
+id="calculateExtra"
+type="button"
+
+>
+
+```
+Calcular horas extras
+```
+
+</button>
+
+<div
+    class="result"
+    id="resultExtra"
+    aria-live="polite"
+>
+
+<span>
+    Valor estimado
+</span>
+
+<strong>
+    R$ 0,00
+</strong>
+
+<small>
+    Cálculo estimativo.
+</small>
+
+</div>
+
+</div>
 
 </div>
 
 <div class="calculator-disclaimer">
 
-
 <strong>
     Importante:
 </strong>
 
-Os cálculos apresentados são
-<strong>estimativos</strong> e foram desenvolvidos
+Os cálculos apresentados são <strong>estimativos</strong> e foram desenvolvidos
 para auxiliar na compreensão inicial dos valores.
 
 Eles podem não considerar todas as particularidades
@@ -1176,7 +1291,6 @@ verbas específicas ou outras situações.
 Os resultados não substituem a conferência da
 legislação vigente, documentos trabalhistas ou
 orientação profissional quando necessária.
-
 
 </div>
 
@@ -1205,7 +1319,6 @@ orientação profissional quando necessária.
 
 <div>
 
-
 <span class="tag">
     RESCISÃO TRABALHISTA
 </span>
@@ -1216,53 +1329,61 @@ orientação profissional quando necessária.
 
 <p>
 
-    O encerramento de um contrato de trabalho
-    pode produzir efeitos diferentes dependendo
-    de quem tomou a iniciativa e da forma como
-    o contrato terminou.
+```
+O encerramento de um contrato de trabalho
+pode produzir efeitos diferentes dependendo
+de quem tomou a iniciativa e da forma como
+o contrato terminou.
+```
 
 </p>
 
 <p>
 
-    Na rescisão podem aparecer verbas como saldo
-    de salário, aviso-prévio, férias adquiridas
-    ou proporcionais, 13º proporcional e valores
-    relacionados ao FGTS, conforme a situação.
+```
+Na rescisão podem aparecer verbas como saldo
+de salário, aviso-prévio, férias adquiridas
+ou proporcionais, 13º proporcional e valores
+relacionados ao FGTS, conforme a situação.
+```
 
 </p>
 
 <div class="pills">
 
-    <span>
-        Saldo de salário
-    </span>
+<span>
+    Saldo de salário
+</span>
 
-    <span>
-        Aviso-prévio
-    </span>
+<span>
+    Aviso-prévio
+</span>
 
-    <span>
-        Férias
-    </span>
+<span>
+    Férias
+</span>
 
-    <span>
-        13º proporcional
-    </span>
+<span>
+    13º proporcional
+</span>
 
-    <span>
-        FGTS
-    </span>
+<span>
+    FGTS
+</span>
 
 </div>
 
 <a
-    href="artigos/rescisao.html"
-    class="text-link"
->
-    Ler artigo completo sobre rescisão →
-</a>
+href="artigos/rescisao.html"
+class="text-link"
 
+>
+
+```
+Ler artigo completo sobre rescisão →
+```
+
+</a>
 
 </div>
 
@@ -1284,7 +1405,6 @@ orientação profissional quando necessária.
 
 <div>
 
-
 <span class="tag">
     FÉRIAS TRABALHISTAS
 </span>
@@ -1295,82 +1415,88 @@ orientação profissional quando necessária.
 
 <p>
 
-    As férias envolvem regras sobre aquisição,
-    concessão, remuneração, adicional de 1/3,
-    possibilidade de abono e situações
-    proporcionais.
+```
+As férias envolvem regras sobre aquisição,
+concessão, remuneração, adicional de 1/3,
+possibilidade de abono e situações
+proporcionais.
+```
 
 </p>
 
 <p>
 
-    Entender cada etapa ajuda o trabalhador a
-    conferir documentos e valores recebidos
-    durante o período de férias.
+```
+Entender cada etapa ajuda o trabalhador a
+conferir documentos e valores recebidos
+durante o período de férias.
+```
 
 </p>
 
 <a
-    href="artigos/ferias.html"
-    class="text-link"
->
-    Ler artigo completo sobre férias →
-</a>
+href="artigos/ferias.html"
+class="text-link"
 
+>
+
+```
+Ler artigo completo sobre férias →
+```
+
+</a>
 
 </div>
 
 <div class="simple-list">
 
-
 <a href="artigos/ferias-proporcionais.html">
 
-    <span aria-hidden="true">
-        ✓
-    </span>
+<span aria-hidden="true">
+    ✓
+</span>
 
-    <strong>
-        Férias proporcionais
-    </strong>
+<strong>
+    Férias proporcionais
+</strong>
 
 </a>
 
 <a href="artigos/ferias-vencidas.html">
 
-    <span aria-hidden="true">
-        ✓
-    </span>
+<span aria-hidden="true">
+    ✓
+</span>
 
-    <strong>
-        Férias vencidas
-    </strong>
+<strong>
+    Férias vencidas
+</strong>
 
 </a>
 
 <a href="artigos/adicional-de-um-terco.html">
 
-    <span aria-hidden="true">
-        ✓
-    </span>
+<span aria-hidden="true">
+    ✓
+</span>
 
-    <strong>
-        Adicional de 1/3
-    </strong>
+<strong>
+    Adicional de 1/3
+</strong>
 
 </a>
 
 <a href="artigos/abono-pecuniario.html">
 
-    <span aria-hidden="true">
-        ✓
-    </span>
+<span aria-hidden="true">
+    ✓
+</span>
 
-    <strong>
-        Abono pecuniário
-    </strong>
+<strong>
+    Abono pecuniário
+</strong>
 
 </a>
-
 
 </div>
 
@@ -1392,7 +1518,6 @@ orientação profissional quando necessária.
 
 <div class="highlight">
 
-
 <div
     class="big-icon"
     aria-hidden="true"
@@ -1406,23 +1531,28 @@ orientação profissional quando necessária.
 
 <p>
 
-    Entenda as parcelas, os avos considerados
-    e o cálculo proporcional do décimo terceiro.
+```
+Entenda as parcelas, os avos considerados
+e o cálculo proporcional do décimo terceiro.
+```
 
 </p>
 
 <a
-    href="#calculadoras"
-    class="button button-secondary"
->
-    Calcular 13º salário
-</a>
+href="#calculadoras"
+class="button button-secondary"
 
+>
+
+```
+Calcular 13º salário
+```
+
+</a>
 
 </div>
 
 <div>
-
 
 <span class="tag">
     DÉCIMO TERCEIRO
@@ -1434,38 +1564,51 @@ orientação profissional quando necessária.
 
 <p>
 
-    O décimo terceiro salário é uma verba anual
-    que pode ser calculada de maneira proporcional
-    quando o trabalhador não permanece durante
-    todo o período de referência.
+```
+O décimo terceiro salário é uma verba anual
+que pode ser calculada de maneira proporcional
+quando o trabalhador não permanece durante
+todo o período de referência.
+```
 
 </p>
 
 <p>
 
-    O entendimento dos chamados avos é importante
-    para conferir se o valor calculado corresponde
-    ao período considerado.
+```
+O entendimento dos chamados avos é importante
+para conferir se o valor calculado corresponde
+ao período considerado.
+```
 
 </p>
 
 <a
-    href="artigos/decimo-terceiro.html"
-    class="text-link"
+href="artigos/decimo-terceiro.html"
+class="text-link"
+
 >
-    Ler artigo completo sobre 13º salário →
+
+```
+Ler artigo completo sobre 13º salário →
+```
+
 </a>
 
 <br>
 <br>
 
 <a
-    href="artigos/decimo-terceiro-proporcional.html"
-    class="text-link"
->
-    Entender o 13º proporcional →
-</a>
+href="artigos/decimo-terceiro-proporcional.html"
+class="text-link"
 
+>
+
+```
+Entender o 13º proporcional →
+```
+
+</a>
 
 </div>
 
@@ -1494,7 +1637,6 @@ orientação profissional quando necessária.
 
 <div>
 
-
 <span class="tag">
     FGTS
 </span>
@@ -1505,49 +1647,57 @@ orientação profissional quando necessária.
 
 <p>
 
-    O Fundo de Garantia do Tempo de Serviço
-    envolve depósitos realizados durante o
-    contrato e regras específicas para saque
-    em diferentes situações.
+```
+O Fundo de Garantia do Tempo de Serviço
+envolve depósitos realizados durante o
+contrato e regras específicas para saque
+em diferentes situações.
+```
 
 </p>
 
 <p>
 
-    Em determinadas modalidades de desligamento,
-    também podem existir valores relacionados
-    à indenização sobre os depósitos, conforme
-    a legislação aplicável.
+```
+Em determinadas modalidades de desligamento,
+também podem existir valores relacionados
+à indenização sobre os depósitos, conforme
+a legislação aplicável.
+```
 
 </p>
 
 <div class="pills">
 
-    <span>
-        Depósitos
-    </span>
+<span>
+    Depósitos
+</span>
 
-    <span>
-        Saque
-    </span>
+<span>
+    Saque
+</span>
 
-    <span>
-        Multa
-    </span>
+<span>
+    Multa
+</span>
 
-    <span>
-        Rescisão
-    </span>
+<span>
+    Rescisão
+</span>
 
 </div>
 
 <a
-    href="artigos/fgts.html"
-    class="text-link"
->
-    Ler artigo completo sobre FGTS →
-</a>
+href="artigos/fgts.html"
+class="text-link"
 
+>
+
+```
+Ler artigo completo sobre FGTS →
+```
+
+</a>
 
 </div>
 
@@ -1569,7 +1719,6 @@ orientação profissional quando necessária.
 
 <div>
 
-
 <span class="tag">
     COMO CONSULTAR
 </span>
@@ -1580,83 +1729,84 @@ orientação profissional quando necessária.
 
 <p>
 
-    O objetivo do RH sem Complicação é facilitar
-    a compreensão das regras trabalhistas sem
-    substituir as fontes oficiais. Por isso,
-    os conteúdos são organizados para apresentar
-    conceitos, exemplos e situações práticas,
-    enquanto a legislação e os órgãos públicos
-    permanecem disponíveis para consulta direta.
+```
+O objetivo do RH sem Complicação é facilitar
+a compreensão das regras trabalhistas sem
+substituir as fontes oficiais. Por isso,
+os conteúdos são organizados para apresentar
+conceitos, exemplos e situações práticas,
+enquanto a legislação e os órgãos públicos
+permanecem disponíveis para consulta direta.
+```
 
 </p>
 
 <p>
 
-    Quando uma informação depender de uma regra
-    específica, o leitor deve considerar a legislação
-    vigente, o contrato de trabalho, eventuais normas
-    coletivas e as circunstâncias particulares do caso.
+```
+Quando uma informação depender de uma regra
+específica, o leitor deve considerar a legislação
+vigente, o contrato de trabalho, eventuais normas
+coletivas e as circunstâncias particulares do caso.
+```
 
 </p>
-
 
 </div>
 
 <div>
 
-
 <div class="simple-list">
 
-    <div>
+<div>
 
-        <span aria-hidden="true">
-            1
-        </span>
+<span aria-hidden="true">
+    1
+</span>
 
-        <strong>
-            Entenda a regra apresentada
-        </strong>
-
-    </div>
-
-    <div>
-
-        <span aria-hidden="true">
-            2
-        </span>
-
-        <strong>
-            Confira o exemplo ou cálculo
-        </strong>
-
-    </div>
-
-    <div>
-
-        <span aria-hidden="true">
-            3
-        </span>
-
-        <strong>
-            Consulte a fonte oficial relacionada
-        </strong>
-
-    </div>
-
-    <div>
-
-        <span aria-hidden="true">
-            4
-        </span>
-
-        <strong>
-            Considere as particularidades do seu contrato
-        </strong>
-
-    </div>
+<strong>
+    Entenda a regra apresentada
+</strong>
 
 </div>
 
+<div>
+
+<span aria-hidden="true">
+    2
+</span>
+
+<strong>
+    Confira o exemplo ou cálculo
+</strong>
+
+</div>
+
+<div>
+
+<span aria-hidden="true">
+    3
+</span>
+
+<strong>
+    Consulte a fonte oficial relacionada
+</strong>
+
+</div>
+
+<div>
+
+<span aria-hidden="true">
+    4
+</span>
+
+<strong>
+    Considere as particularidades do seu contrato
+</strong>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1678,149 +1828,159 @@ orientação profissional quando necessária.
 
 <div class="section-title">
 
-
 <div>
 
-    <span class="tag">
-        FONTES OFICIAIS
-    </span>
+<span class="tag">
+    FONTES OFICIAIS
+</span>
 
-    <h2 id="titulo-legislacao">
-        Consulte a legislação trabalhista
-    </h2>
+<h2 id="titulo-legislacao">
+    Consulte a legislação trabalhista
+</h2>
 
 </div>
 
 <p>
 
-    Acesse diretamente fontes oficiais para
-    conferir leis, normas, serviços e informações
-    relacionadas ao trabalho.
+```
+Acesse diretamente fontes oficiais para
+conferir leis, normas, serviços e informações
+relacionadas ao trabalho.
+```
 
 </p>
-
 
 </div>
 
 <div class="cards">
 
-
 <a
-    href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="topic-card"
+href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm"
+target="_blank"
+rel="noopener noreferrer"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        📕
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    📕
+</div>
 
-    <h3>
-        CLT
-    </h3>
+<h3>
+    CLT
+</h3>
 
-    <p>
+<p>
 
-        Consulte a Consolidação das Leis
-        do Trabalho diretamente no portal
-        oficial do Planalto.
+```
+Consulte a Consolidação das Leis
+do Trabalho diretamente no portal
+oficial do Planalto.
+```
 
-    </p>
+</p>
 
-    <strong>
-        Acessar CLT →
-    </strong>
+<strong>
+    Acessar CLT →
+</strong>
 
 </a>
 
 <a
-    href="https://www.gov.br/trabalho-e-emprego/pt-br"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="topic-card"
+href="https://www.gov.br/trabalho-e-emprego/pt-br"
+target="_blank"
+rel="noopener noreferrer"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        🏛️
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    🏛️
+</div>
 
-    <h3>
-        Ministério do Trabalho
-    </h3>
+<h3>
+    Ministério do Trabalho
+</h3>
 
-    <p>
+<p>
 
-        Consulte informações e serviços
-        oficiais relacionados ao trabalho
-        e às relações trabalhistas.
+```
+Consulte informações e serviços
+oficiais relacionados ao trabalho
+e às relações trabalhistas.
+```
 
-    </p>
+</p>
 
-    <strong>
-        Acessar Gov.br →
-    </strong>
+<strong>
+    Acessar Gov.br →
+</strong>
 
 </a>
 
 <a
-    href="https://www.tst.jus.br/"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="topic-card"
+href="https://www.tst.jus.br/"
+target="_blank"
+rel="noopener noreferrer"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        ⚖️
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    ⚖️
+</div>
 
-    <h3>
-        Tribunal Superior do Trabalho
-    </h3>
+<h3>
+    Tribunal Superior do Trabalho
+</h3>
 
-    <p>
+<p>
 
-        Consulte informações institucionais,
-        decisões e conteúdos oficiais da
-        Justiça do Trabalho.
+```
+Consulte informações institucionais,
+decisões e conteúdos oficiais da
+Justiça do Trabalho.
+```
 
-    </p>
+</p>
 
-    <strong>
-        Acessar TST →
-    </strong>
+<strong>
+    Acessar TST →
+</strong>
 
 </a>
 
 <a
-    href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/Paginas/default.aspx"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="topic-card"
+href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/Paginas/default.aspx"
+target="_blank"
+rel="noopener noreferrer"
+class="topic-card"
+
 >
 
-    <div class="topic-icon" aria-hidden="true">
-        💰
-    </div>
+<div class="topic-icon" aria-hidden="true">
+    💰
+</div>
 
-    <h3>
-        FGTS / CAIXA
-    </h3>
+<h3>
+    FGTS / CAIXA
+</h3>
 
-    <p>
+<p>
 
-        Consulte informações oficiais sobre
-        FGTS, contas, modalidades de saque
-        e serviços relacionados.
+```
+Consulte informações oficiais sobre
+FGTS, contas, modalidades de saque
+e serviços relacionados.
+```
 
-    </p>
+</p>
 
-    <strong>
-        Acessar CAIXA →
-    </strong>
+<strong>
+    Acessar CAIXA →
+</strong>
 
 </a>
-
 
 </div>
 
@@ -1842,238 +2002,255 @@ orientação profissional quando necessária.
 
 <div class="section-title">
 
-
 <div>
 
-    <span class="tag">
-        CONTEÚDO TRABALHISTA
-    </span>
+<span class="tag">
+    CONTEÚDO TRABALHISTA
+</span>
 
-    <h2 id="titulo-artigos">
-        Artigos sobre direitos trabalhistas
-    </h2>
+<h2 id="titulo-artigos">
+    Artigos sobre direitos trabalhistas
+</h2>
 
 </div>
 
 <p>
 
-    Conteúdos organizados para explicar
-    situações comuns da vida profissional
-    e facilitar a consulta aos principais temas.
+```
+Conteúdos organizados para explicar
+situações comuns da vida profissional
+e facilitar a consulta aos principais temas.
+```
 
 </p>
-
 
 </div>
 
 <div class="articles">
 
-
 <article>
 
-    <span>
-        RESCISÃO
-    </span>
+<span>
+    RESCISÃO
+</span>
 
-    <h3>
-        O que posso receber quando sou demitido?
-    </h3>
+<h3>
+    O que posso receber quando sou demitido?
+</h3>
 
-    <p>
+<p>
 
-        Conheça as principais verbas que podem
-        aparecer em uma rescisão e entenda as
-        diferenças entre as modalidades de
-        encerramento do contrato.
+```
+Conheça as principais verbas que podem
+aparecer em uma rescisão e entenda as
+diferenças entre as modalidades de
+encerramento do contrato.
+```
 
-    </p>
+</p>
 
-    <a href="artigos/rescisao.html">
-        Ler artigo completo →
-    </a>
+<a href="artigos/rescisao.html">
+    Ler artigo completo →
+</a>
 
 </article>
 
 <article>
 
-    <span>
-        DEMISSÃO
-    </span>
+<span>
+    DEMISSÃO
+</span>
 
-    <h3>
-        Demissão sem justa causa
-    </h3>
+<h3>
+    Demissão sem justa causa
+</h3>
 
-    <p>
+<p>
 
-        Saiba quais direitos podem existir quando
-        a empresa encerra o contrato sem justa causa
-        e quais verbas devem ser analisadas.
+```
+Saiba quais direitos podem existir quando
+a empresa encerra o contrato sem justa causa
+e quais verbas devem ser analisadas.
+```
 
-    </p>
+</p>
 
-    <a href="artigos/demissao-sem-justa-causa.html">
-        Ler artigo →
-    </a>
-
-</article>
-
-<article>
-
-    <span>
-        PEDIDO DE DEMISSÃO
-    </span>
-
-    <h3>
-        Pedi demissão. Quais são meus direitos?
-    </h3>
-
-    <p>
-
-        Entenda o que pode acontecer quando o
-        trabalhador decide encerrar o vínculo
-        por iniciativa própria.
-
-    </p>
-
-    <a href="artigos/pedido-de-demissao.html">
-        Ler artigo →
-    </a>
+<a href="artigos/demissao-sem-justa-causa.html">
+    Ler artigo →
+</a>
 
 </article>
 
 <article>
 
-    <span>
-        AVISO-PRÉVIO
-    </span>
+<span>
+    PEDIDO DE DEMISSÃO
+</span>
 
-    <h3>
-        Como funciona o aviso-prévio?
-    </h3>
+<h3>
+    Pedi demissão. Quais são meus direitos?
+</h3>
 
-    <p>
+<p>
 
-        Entenda as principais regras, diferenças
-        e situações que podem envolver o
-        aviso-prévio.
+```
+Entenda o que pode acontecer quando o
+trabalhador decide encerrar o vínculo
+por iniciativa própria.
+```
 
-    </p>
+</p>
 
-    <a href="artigos/aviso-previo.html">
-        Ler artigo →
-    </a>
-
-</article>
-
-<article>
-
-    <span>
-        FÉRIAS
-    </span>
-
-    <h3>
-        Como funcionam as férias?
-    </h3>
-
-    <p>
-
-        Veja como funcionam férias vencidas,
-        proporcionais, adicional de 1/3 e
-        outras regras importantes.
-
-    </p>
-
-    <a href="artigos/ferias.html">
-        Ler artigo →
-    </a>
+<a href="artigos/pedido-de-demissao.html">
+    Ler artigo →
+</a>
 
 </article>
 
 <article>
 
-    <span>
-        FGTS
-    </span>
+<span>
+    AVISO-PRÉVIO
+</span>
 
-    <h3>
-        Como funciona o FGTS?
-    </h3>
+<h3>
+    Como funciona o aviso-prévio?
+</h3>
 
-    <p>
+<p>
 
-        Entenda depósitos, saques e situações
-        relacionadas ao Fundo de Garantia.
+```
+Entenda as principais regras, diferenças
+e situações que podem envolver o
+aviso-prévio.
+```
 
-    </p>
+</p>
 
-    <a href="artigos/fgts.html">
-        Ler artigo →
-    </a>
-
-</article>
-
-<article>
-
-    <span>
-        HORAS EXTRAS
-    </span>
-
-    <h3>
-        Como são calculadas as horas extras?
-    </h3>
-
-    <p>
-
-        Entenda o adicional, o cálculo básico
-        e veja exemplos para compreender
-        como a estimativa é feita.
-
-    </p>
-
-    <a href="artigos/horas-extras.html">
-        Ler artigo →
-    </a>
+<a href="artigos/aviso-previo.html">
+    Ler artigo →
+</a>
 
 </article>
 
 <article>
 
-    <span>
-        SEGURO-DESEMPREGO
-    </span>
+<span>
+    FÉRIAS
+</span>
 
-    <h3>
-        Quem pode ter direito ao seguro-desemprego?
-    </h3>
+<h3>
+    Como funcionam as férias?
+</h3>
 
-    <p>
+<p>
 
-        Conheça informações gerais sobre o
-        benefício e os principais pontos que
-        devem ser conferidos.
+```
+Veja como funcionam férias vencidas,
+proporcionais, adicional de 1/3 e
+outras regras importantes.
+```
 
-    </p>
+</p>
 
-    <a href="artigos/seguro-desemprego.html">
-        Ler artigo →
-    </a>
+<a href="artigos/ferias.html">
+    Ler artigo →
+</a>
 
 </article>
 
+<article>
+
+<span>
+    FGTS
+</span>
+
+<h3>
+    Como funciona o FGTS?
+</h3>
+
+<p>
+
+```
+Entenda depósitos, saques e situações
+relacionadas ao Fundo de Garantia.
+```
+
+</p>
+
+<a href="artigos/fgts.html">
+    Ler artigo →
+</a>
+
+</article>
+
+<article>
+
+<span>
+    HORAS EXTRAS
+</span>
+
+<h3>
+    Como são calculadas as horas extras?
+</h3>
+
+<p>
+
+```
+Entenda o adicional, o cálculo básico
+e veja exemplos para compreender
+como a estimativa é feita.
+```
+
+</p>
+
+<a href="artigos/horas-extras.html">
+    Ler artigo →
+</a>
+
+</article>
+
+<article>
+
+<span>
+    SEGURO-DESEMPREGO
+</span>
+
+<h3>
+    Quem pode ter direito ao seguro-desemprego?
+</h3>
+
+<p>
+
+```
+Conheça informações gerais sobre o
+benefício e os principais pontos que
+devem ser conferidos.
+```
+
+</p>
+
+<a href="artigos/seguro-desemprego.html">
+    Ler artigo →
+</a>
+
+</article>
 
 </div>
 
 <div style="text-align:center; margin-top:35px;">
 
-
 <a
-    href="artigos/direitos-do-trabalhador.html"
-    class="button button-primary"
->
-    📚 Ver todos os artigos →
-</a>
+href="artigos/direitos-do-trabalhador.html"
+class="button button-primary"
 
+>
+
+```
+📚 Ver todos os artigos →
+```
+
+</a>
 
 </div>
 
@@ -2095,104 +2272,110 @@ orientação profissional quando necessária.
 
 <div class="section-title">
 
-
 <div>
 
-    <span class="tag">
-        DÚVIDAS FREQUENTES
-    </span>
+<span class="tag">
+    DÚVIDAS FREQUENTES
+</span>
 
-    <h2 id="titulo-faq">
-        Perguntas frequentes sobre o RH sem Complicação
-    </h2>
+<h2 id="titulo-faq">
+    Perguntas frequentes sobre o RH sem Complicação
+</h2>
 
 </div>
 
 <p>
 
-    Algumas dúvidas comuns sobre os conteúdos
-    e calculadoras disponíveis no site.
+```
+Algumas dúvidas comuns sobre os conteúdos
+e calculadoras disponíveis no site.
+```
 
 </p>
-
 
 </div>
 
 <div class="articles">
 
-
 <article>
 
-    <h3>
-        Os cálculos do site são oficiais?
-    </h3>
+<h3>
+    Os cálculos do site são oficiais?
+</h3>
 
-    <p>
+<p>
 
-        Não. As calculadoras fornecem estimativas
-        com base nos dados informados pelo usuário.
-        O resultado pode mudar conforme as condições
-        específicas do contrato, documentos, legislação
-        e normas coletivas aplicáveis.
+```
+Não. As calculadoras fornecem estimativas
+com base nos dados informados pelo usuário.
+O resultado pode mudar conforme as condições
+específicas do contrato, documentos, legislação
+e normas coletivas aplicáveis.
+```
 
-    </p>
+</p>
 
 </article>
 
 <article>
 
-    <h3>
-        Posso usar o site para conferir meus direitos?
-    </h3>
+<h3>
+    Posso usar o site para conferir meus direitos?
+</h3>
 
-    <p>
+<p>
 
-        O site pode ser utilizado como fonte
-        informativa para compreender conceitos,
-        regras gerais e exemplos relacionados
-        ao trabalho. Para situações específicas,
-        é importante conferir os documentos e
-        as fontes oficiais correspondentes.
+```
+O site pode ser utilizado como fonte
+informativa para compreender conceitos,
+regras gerais e exemplos relacionados
+ao trabalho. Para situações específicas,
+é importante conferir os documentos e
+as fontes oficiais correspondentes.
+```
 
-    </p>
-
-</article>
-
-<article>
-
-    <h3>
-        De onde vêm as informações?
-    </h3>
-
-    <p>
-
-        O conteúdo é elaborado para explicar
-        assuntos trabalhistas em linguagem simples
-        e apresenta referências e links para fontes
-        oficiais, como legislação e órgãos públicos,
-        quando aplicável.
-
-    </p>
+</p>
 
 </article>
 
 <article>
 
-    <h3>
-        O conteúdo substitui orientação profissional?
-    </h3>
+<h3>
+    De onde vêm as informações?
+</h3>
 
-    <p>
+<p>
 
-        Não. O RH sem Complicação possui finalidade
-        informativa. Situações que envolvam dúvidas
-        específicas, conflitos ou particularidades
-        contratuais podem exigir análise profissional.
+```
+O conteúdo é elaborado para explicar
+assuntos trabalhistas em linguagem simples
+e apresenta referências e links para fontes
+oficiais, como legislação e órgãos públicos,
+quando aplicável.
+```
 
-    </p>
+</p>
 
 </article>
 
+<article>
+
+<h3>
+    O conteúdo substitui orientação profissional?
+</h3>
+
+<p>
+
+```
+Não. O RH sem Complicação possui finalidade
+informativa. Situações que envolvam dúvidas
+específicas, conflitos ou particularidades
+contratuais podem exigir análise profissional.
+```
+
+</p>
+
+</article>
 
 </div>
 
@@ -2214,21 +2397,19 @@ orientação profissional quando necessária.
 
 <div class="avatar">
 
-
 <img
-    src="imagen/perfil%20sit.jpeg"
-    alt="Edson Emanuel Previatti, profissional de Recursos Humanos e criador do RH sem Complicação"
-    width="400"
-    height="400"
-    loading="lazy"
-    decoding="async"
->
+src="imagen/perfil%20sit.jpeg"
+alt="Edson Emanuel Previatti, profissional de Recursos Humanos e criador do RH sem Complicação"
+width="400"
+height="400"
+loading="lazy"
+decoding="async"
 
+>
 
 </div>
 
 <div>
-
 
 <span class="tag">
     SOBRE O PROJETO
@@ -2240,33 +2421,38 @@ orientação profissional quando necessária.
 
 <p>
 
-    Sou profissional de Recursos Humanos e criei
-    o <strong>RH sem Complicação</strong> para
-    explicar assuntos relacionados ao trabalho
-    e aos direitos dos trabalhadores de forma
-    clara e objetiva.
+```
+Sou profissional de Recursos Humanos e criei
+o <strong>RH sem Complicação</strong> para
+explicar assuntos relacionados ao trabalho
+e aos direitos dos trabalhadores de forma
+clara e objetiva.
+```
 
 </p>
 
 <p>
 
-    O projeto busca transformar informações que
-    podem parecer técnicas ou difíceis em conteúdos
-    organizados e compreensíveis, ajudando o leitor
-    a entender melhor situações comuns da vida
-    profissional.
+```
+O projeto busca transformar informações que
+podem parecer técnicas ou difíceis em conteúdos
+organizados e compreensíveis, ajudando o leitor
+a entender melhor situações comuns da vida
+profissional.
+```
 
 </p>
 
 <p>
 
-    O conteúdo possui caráter informativo e não
-    substitui a consulta à legislação vigente,
-    aos documentos do trabalhador ou a uma
-    orientação profissional quando necessária.
+```
+O conteúdo possui caráter informativo e não
+substitui a consulta à legislação vigente,
+aos documentos do trabalhador ou a uma
+orientação profissional quando necessária.
+```
 
 </p>
-
 
 </div>
 
@@ -2288,32 +2474,31 @@ orientação profissional quando necessária.
 
 <div class="section-title">
 
-
 <div>
 
-    <span class="tag">
-        CONTATO
-    </span>
+<span class="tag">
+    CONTATO
+</span>
 
-    <h2 id="titulo-contato">
-        Entre em contato
-    </h2>
+<h2 id="titulo-contato">
+    Entre em contato
+</h2>
 
 </div>
 
 <p>
 
-    Envie dúvidas, sugestões, correções,
-    informações ou propostas relacionadas
-    ao RH sem Complicação.
+```
+Envie dúvidas, sugestões, correções,
+informações ou propostas relacionadas
+ao RH sem Complicação.
+```
 
 </p>
-
 
 </div>
 
 <div class="contact-card">
-
 
 <div
     class="contact-icon"
@@ -2324,46 +2509,56 @@ orientação profissional quando necessária.
 
 <div>
 
-    <h2>
-        Fale com o RH sem Complicação
-    </h2>
+<h2>
+    Fale com o RH sem Complicação
+</h2>
 
-    <p>
+<p>
 
-        Você pode entrar em contato para enviar
-        dúvidas, sugestões, informações, correções
-        sobre conteúdos ou propostas de publicidade
-        e divulgação no site.
+```
+Você pode entrar em contato para enviar
+dúvidas, sugestões, informações, correções
+sobre conteúdos ou propostas de publicidade
+e divulgação no site.
+```
 
-    </p>
+</p>
 
-    <p>
+<p>
 
-        <strong>
-            Retornarei o contato assim que possível.
-        </strong>
+```
+<strong>
+    Retornarei o contato assim que possível.
+</strong>
+```
 
-    </p>
+</p>
 
-    <a
-        href="mailto:edsonpreviatti1996@outlook.com?subject=Contato%20-%20RH%20sem%20Complica%C3%A7%C3%A3o"
-        class="button button-primary"
-    >
-        ✉️ Enviar e-mail
-    </a>
+<a
+href="mailto:edsonpreviatti1996@outlook.com?subject=Contato%20-%20RH%20sem%20Complica%C3%A7%C3%A3o"
+class="button button-primary"
 
-    <p class="small-text">
+>
 
-        E-mail:
+```
+✉️ Enviar e-mail
+```
 
-        <strong>
-            edsonpreviatti1996@outlook.com
-        </strong>
+</a>
 
-    </p>
+<p class="small-text">
+
+```
+E-mail:
+
+<strong>
+    edsonpreviatti1996@outlook.com
+</strong>
+```
+
+</p>
 
 </div>
-
 
 </div>
 
@@ -2383,40 +2578,40 @@ orientação profissional quando necessária.
 
 <div>
 
-
 <a
-    href="#inicio"
-    class="logo footer-logo"
-    aria-label="RH sem Complicação - Página inicial"
+href="#inicio"
+class="logo footer-logo"
+aria-label="RH sem Complicação - Página inicial"
+
 >
 
-    <div
-        class="logo-icon"
-        aria-hidden="true"
-    >
-        RH
-    </div>
+<div
+    class="logo-icon"
+    aria-hidden="true"
+>
+    RH
+</div>
 
-    <div>
-        RH sem <strong>Complicação</strong>
-    </div>
+<div>
+    RH sem <strong>Complicação</strong>
+</div>
 
 </a>
 
 <p>
 
-    Direitos trabalhistas explicados
-    de forma simples e objetiva.
+```
+Direitos trabalhistas explicados
+de forma simples e objetiva.
+```
 
 </p>
-
 
 </div>
 
 <!-- ATALHOS -->
 
 <div>
-
 
 <h3>
     Atalhos
@@ -2446,13 +2641,11 @@ orientação profissional quando necessária.
     Contato
 </a>
 
-
 </div>
 
 <!-- CONTEÚDOS -->
 
 <div>
-
 
 <h3>
     Conteúdos
@@ -2478,56 +2671,75 @@ orientação profissional quando necessária.
     Horas extras
 </a>
 
-
 </div>
 
 <!-- FONTES OFICIAIS -->
 
 <div>
 
-
 <h3>
     Fontes oficiais
 </h3>
 
 <a
-    href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm"
-    target="_blank"
-    rel="noopener noreferrer"
+href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm"
+target="_blank"
+rel="noopener noreferrer"
+
 >
-    CLT
+
+```
+CLT
+```
+
 </a>
 
 <a
-    href="https://www.gov.br/trabalho-e-emprego/pt-br"
-    target="_blank"
-    rel="noopener noreferrer"
+href="https://www.gov.br/trabalho-e-emprego/pt-br"
+target="_blank"
+rel="noopener noreferrer"
+
 >
-    Ministério do Trabalho
+
+```
+Ministério do Trabalho
+```
+
 </a>
 
 <a
-    href="https://www.tst.jus.br/"
-    target="_blank"
-    rel="noopener noreferrer"
+href="https://www.tst.jus.br/"
+target="_blank"
+rel="noopener noreferrer"
+
 >
-    TST
+
+```
+TST
+```
+
 </a>
 
 <a
-    href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/Paginas/default.aspx"
-    target="_blank"
-    rel="noopener noreferrer"
->
-    FGTS / CAIXA
-</a>
+href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/Paginas/default.aspx"
+target="_blank"
+rel="noopener noreferrer"
 
+>
+
+```
+FGTS / CAIXA
+```
+
+</a>
 
 </div>
 
 </div>
 
-<!-- LINKS DE SEGURANÇA -->
+<!-- =====================================================
+     LINKS DE SEGURANÇA
+===================================================== -->
 
 <div class="container disclaimer">
 
@@ -2537,16 +2749,15 @@ orientação profissional quando necessária.
 
 <p>
 
-
+```
 Consulte as páginas abaixo para conhecer
 as regras, limitações e informações relacionadas
 ao funcionamento do site.
-
+```
 
 </p>
 
 <div class="legal-links">
-
 
 <a href="politica-de-privacidade.html">
     Política de Privacidade
@@ -2560,7 +2771,6 @@ ao funcionamento do site.
     Aviso Legal
 </a>
 
-
 </div>
 
 <br>
@@ -2571,32 +2781,33 @@ ao funcionamento do site.
 
 <p>
 
-
+```
 Os conteúdos e cálculos deste site possuem
 caráter informativo e estimativo. Não substituem
 orientação profissional ou consulta aos órgãos
 oficiais.
-
+```
 
 </p>
 
 <p>
 
-
+```
 As regras trabalhistas podem sofrer alterações.
 Confirme sempre a legislação vigente e as fontes
 oficiais antes de tomar decisões com base nas
 informações apresentadas.
-
+```
 
 </p>
 
 </div>
 
-<!-- COPYRIGHT -->
+<!-- =====================================================
+     COPYRIGHT
+===================================================== -->
 
 <div class="copyright">
-
 
 © <span id="year"></span>
 
@@ -2610,7 +2821,6 @@ Conteúdo produzido por
 <strong>
     Edson Emanuel Previatti
 </strong>.
-
 
 </div>
 

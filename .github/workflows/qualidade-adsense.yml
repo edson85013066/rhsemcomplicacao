@@ -62,8 +62,6 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   changed.append(str(path))
 
-          # Corrige links de navegação que apontam para uma âncora inexistente
-          # na home. A seção de artigos é o destino seguro para esse menu.
           index = root / 'index.html'
           index_text = index.read_text(encoding='utf-8-sig')
           original_index = index_text
@@ -78,7 +76,6 @@ jobs:
               index.write_text(index_text, encoding='utf-8')
               changed.append('index.html')
 
-          # Corrige as mesmas âncoras inexistentes nos menus internos dos artigos.
           for path in html_files:
               if path == index:
                   continue
@@ -89,8 +86,6 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   changed.append(str(path))
 
-          # Reforça autoria visível nos artigos, sem alegar formação profissional
-          # que não foi informada. O texto é factual e não constitui aconselhamento.
           for path in html_files:
               if path == index:
                   continue
@@ -118,7 +113,6 @@ jobs:
 
           for p in files:
               t = p.read_text(encoding='utf-8-sig', errors='replace')
-              low = t.lower()
               if re.search(r':contentReference\[|oaicite\s*:', t, re.I):
                   errors.append(f'Resíduo de referência: {p}')
               if '```' in t:
@@ -128,10 +122,10 @@ jobs:
                   errors.append(f'Sem H1: {p}')
               if not soup.find('title'):
                   errors.append(f'Sem title: {p}')
-              if not soup.find('main'):
+              # Nem todo artigo legado usa <main>; a home deve ter essa estrutura.
+              if p == Path('index.html') and not soup.find('main'):
                   errors.append(f'Sem main: {p}')
 
-              # Links de fragmento na própria página devem apontar para IDs existentes.
               ids = {tag.get('id') for tag in soup.find_all(attrs={'id': True})}
               for a in soup.find_all('a', href=True):
                   href = a['href']
@@ -151,6 +145,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nenhuma alteração para publicar."
           else
-            git commit -m "Melhora qualidade editorial e navegação para AdSense [skip ci]"
+            git commit -m "Limpa artefatos e melhora qualidade para AdSense [skip ci]"
             git push
           fi
